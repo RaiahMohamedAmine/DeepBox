@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 
+require('./db');
+
 app.get('/',(req,res)=>{
     res.json({
         Message: "Deep Box Is Running"
