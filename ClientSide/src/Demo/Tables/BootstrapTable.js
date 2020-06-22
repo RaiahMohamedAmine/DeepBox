@@ -1,12 +1,14 @@
 import React from 'react';
 import { Row, Col, Card, Table, Tabs, Tab} from 'react-bootstrap';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
+import axios from 'axios'
 
 
 import Aux from "../../hoc/_Aux";
 
 class BootstrapTable extends React.Component {
     state = {
+        patients: [],
         patientDate: {
             nom: "",
             prenom: "",
@@ -17,6 +19,20 @@ class BootstrapTable extends React.Component {
         },
         patientModal: false
     }
+    
+    componentWillMount() {
+        this.refreshMembers()
+    }
+
+    refreshMembers() {
+        axios.get('http://localhost:5200/malade/get').then((response) => {
+          this.setState({
+            patients: response.data.malades
+          }, () => {
+              console.log(this.state.patients)
+          })
+        })
+      }
 
     togglePatientModal() {
         this.setState({
