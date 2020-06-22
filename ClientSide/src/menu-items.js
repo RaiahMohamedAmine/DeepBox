@@ -15,14 +15,14 @@ export default {
                 },
                 {
                     id: 'form-basic',
-                    title: 'Form Elements',
+                    title: 'Ajout de cas',
                     type: 'item',
                     url: '/forms/form-basic',
                     icon: 'feather icon-file-text'
                 },
                 {
                     id: 'bootstrap',
-                    title: 'Table',
+                    title: 'Liste des cas',
                     type: 'item',
                     icon: 'feather icon-server',
                     url: '/tables/bootstrap'
@@ -81,7 +81,7 @@ export default {
                 }
             ]
         },
-        {
+        /*{
             id: 'ui-forms',
             title: 'Forms & Tables',
             type: 'group',
@@ -102,7 +102,7 @@ export default {
                     url: '/tables/bootstrap'
                 }
             ]
-        },
+        },*/
         {
             id: 'chart-maps',
             title: 'Chart & Maps',
