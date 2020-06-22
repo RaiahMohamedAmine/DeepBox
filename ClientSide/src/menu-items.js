@@ -12,6 +12,20 @@ export default {
                     type: 'item',
                     url: '/dashboard/default',
                     icon: 'feather icon-home',
+                },
+                {
+                    id: 'form-basic',
+                    title: 'Form Elements',
+                    type: 'item',
+                    url: '/forms/form-basic',
+                    icon: 'feather icon-file-text'
+                },
+                {
+                    id: 'bootstrap',
+                    title: 'Table',
+                    type: 'item',
+                    icon: 'feather icon-server',
+                    url: '/tables/bootstrap'
                 }
             ]
         },
