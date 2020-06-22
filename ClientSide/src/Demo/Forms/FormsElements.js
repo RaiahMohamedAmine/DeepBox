@@ -1,25 +1,11 @@
-import React, {useState}from 'react';
+import React from 'react';
 import { Row, Col, Card, Form, Button, InputGroup, FormControl, DropdownButton, Dropdown } from 'react-bootstrap';
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import Aux from "../../hoc/_Aux";
 
 class FormsElements extends React.Component {
-    constructor(props)
-    {
-        super(props);
-        this.formValues={
-            id :'',
-            nom :'',
-            prenom :'',
-            adresse:'',
-            etat :'',
-            tel :'',
-            siege :'',
-            dateNaissance :'',
-            dateAjout :'',
-        }
-    }
+
     render() {
         return (
         
