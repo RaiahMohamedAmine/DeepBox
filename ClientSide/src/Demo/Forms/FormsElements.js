@@ -156,7 +156,7 @@ class FormsElements extends React.Component {
                                                 }}
                                             />
                                         </FormGroup>
-                                        <FormGroup controlId="exampleForm.ControlSelect1">
+                                        <FormGroup>
                                             <h6>État</h6>
                                             <Input
                                                 type="select"

@@ -1,7 +1,7 @@
 const connection = require('../../db');
 
 async function addMalade (req,res){
-    if (!req.body)
+    if (!req.body.nom && !req.body.prenom && !req.body.adresse && !req.body.siege && !req.body.dateAjout && !req.body.dateNaissance && !req.body.etat &&!req.body.tel)
     {
         res.status(400).json({
             type :"Err",
