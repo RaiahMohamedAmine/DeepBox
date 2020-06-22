@@ -9,13 +9,15 @@ async function addMalade (req,res){
         });
         return;
     }
-    connection.query ('INSERT INTO malade SET ?',req.body,(err)=>{
-        if (err)
+    console.log(req.body)
+    connection.query ('INSERT INTO malade SET ?', req.body.patient, (err) => {
+        if (err) {
+            console.log(err)
             res.status(500).json({
                 type:"Err",
                 message :"Server not responding"
             });
-        else{
+        } else{
             res.status(200).json({
                 type :"Info",
                 message :"Malade Added successfully !"
