@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Col, Card, Form, Button, InputGroup, FormControl, DropdownButton, Dropdown } from 'react-bootstrap';
-
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 import Aux from "../../hoc/_Aux";
 
 class FormsElements extends React.Component {
@@ -8,6 +9,7 @@ class FormsElements extends React.Component {
     render() {
 
         return (
+        
             <Aux>
                 <Row>
                     <Col>
@@ -32,23 +34,26 @@ class FormsElements extends React.Component {
                                                 <Form.Control type="text" placeholder="Prénom du cas" />
                                             </Form.Group>
                                             <Form.Group controlId="exampleForm.ControlInput1">
-                                                <Form.Label>Adresse</Form.Label>
-                                                <Form.Control type="text" placeholder="Adresse du cas" />
+                                                <Form.Label>Téléphone</Form.Label>
+                                                <PhoneInput
+                                                    country={'dz'}
+                                                />
                                             </Form.Group>
                                         </Form>
                                     </Col>
                                     <Col md={6}>
                                         <Form.Group controlId="exampleForm.ControlInput1">
-                                            <Form.Label>Téléphone</Form.Label>
-                                            <Form.Control type="tel" placeholder="Téléphone du cas" />
+                                            <Form.Label>Adresse</Form.Label>
+                                            <Form.Control type="text" placeholder="Adresse du cas" />
                                         </Form.Group>
                                         <Form.Group controlId="exampleForm.ControlInput1">
                                             <Form.Label>Siège hospitalier</Form.Label>
                                             <Form.Control type="text" placeholder="Siège hospitalier" />
                                         </Form.Group>
+                                        <br />
                                         <Form.Group>
-                                        <Button variant="primary">
-                                            Submit
+                                            <Button variant="primary">
+                                                Submit
                                         </Button>
                                         </Form.Group>
                                         {/* 
@@ -184,7 +189,7 @@ class FormsElements extends React.Component {
                             */}
                             </Card.Body>
                         </Card>
-                                                {/**
+                        {/**
                         <Card>
                             <Card.Header>
                                 <Card.Title as="h5">Input Group</Card.Title>
