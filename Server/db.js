@@ -26,6 +26,7 @@ const createDBs =(connection)=> {
         +'etat varchar(20) not null,'
         +'tel varchar(10) primary key,'
         +'adresse varchar(30) not null,'
+        +'sexe varchar(5) not null,'
         +'siege varchar(20) not null,'
         +'dateNaissance varchar(10) not null,'
         +'dateAjout varchar(20) not null'

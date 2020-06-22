@@ -15,8 +15,9 @@ class FormsElements extends React.Component {
             siege: "",
             dateAjout: "",
             dateNaissance: "",
-            etat: "",
+            etat: "Suspect",
             tel: "",
+            sexe: "Homme",
         },
     }
 
@@ -170,6 +171,20 @@ class FormsElements extends React.Component {
                                                 <option value="Positif">Positif</option>
                                                 <option value="Negatif">Négatif</option>
                                                 <option value="Gueri">Guéri</option>
+                                            </Input>
+                                        </FormGroup>
+                                        <FormGroup>
+                                            <h6>Sexe</h6>
+                                            <Input
+                                                type="select"
+                                                onChange={(e) => {
+                                                    var { patientData } = this.state
+                                                    patientData.sexe = e.target.value
+                                                    this.setState({ patientData })
+                                                }}
+                                            >
+                                                <option value="Homme">Homme</option>
+                                                <option value="Femme">Femme</option>
                                             </Input>
                                         </FormGroup>
                                         <br />
