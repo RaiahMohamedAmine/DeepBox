@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 
 require('./db');
+require('./routes/maladeRoutes')(app);
 
 app.get('/',(req,res)=>{
     res.json({
