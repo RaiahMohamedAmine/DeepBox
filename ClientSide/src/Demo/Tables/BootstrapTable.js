@@ -8,7 +8,10 @@ import Aux from "../../hoc/_Aux";
 
 class BootstrapTable extends React.Component {
     state = {
-        patients: [],
+        suspects: [],
+        positifCases: [],
+        negatifCases: [],
+        healdCases: [],
         patientData: {
             nom: "",
             prenom: "",
@@ -27,9 +30,32 @@ class BootstrapTable extends React.Component {
     }
 
     refreshMembers() {
-        axios.get('http://localhost:5200/malade/get').then((response) => {
+        axios.get('http://localhost:5200/malade/get/Suspect').then((response) => {
             this.setState({
-                patients: response.data.malades
+                suspects: response.data.malades
+            }, () => {
+                console.log(this.state.suspects)
+            })
+        })
+        axios.get('http://localhost:5200/malade/get/Positif').then((response) => {
+            this.setState({
+                positifCases: response.data.malades
+            }, () => {
+                console.log(this.state.positifCases)
+            })
+        })
+        axios.get('http://localhost:5200/malade/get/Négatif').then((response) => {
+            this.setState({
+                NegatifCases: response.data.malades
+            }, () => {
+                console.log(this.state.negatifCases)
+            })
+        })
+        axios.get('http://localhost:5200/malade/get/Guéri').then((response) => {
+            this.setState({
+                healdCases: response.data.malades
+            }, () => {
+                console.log(this.state.healdCases)
             })
         })
     }
@@ -41,15 +67,24 @@ class BootstrapTable extends React.Component {
     }
 
     getPatientData(data) {
+        console.log(data)
         this.setState({
-            patientData: { ...data },
+            patientData: {
+                nom: data.nom,
+                prenom: data.prenom,
+                siege: data.siege,
+                adresse: data.adresse,
+                etat: data.etat,
+                tel: "0" + data.id,
+                dateAjout: data.dateAjout,
+                dateNaissance: data.dateNaissance
+            },
             patientModal: !this.state.patientModal
         })
-
     }
 
     render() {
-        let suspeciousPatients = this.state.patients.map((patient, index) => {
+        let suspeciousPatients = this.state.suspects.map((patient, index) => {
             return (
                 <tr key={index} onClick={this.getPatientData.bind(this, patient)}>
                     <th scope="row">1</th>
@@ -61,6 +96,43 @@ class BootstrapTable extends React.Component {
                 </tr>
             )
         })
+        let positifPatients = this.state.positifCases.map((patient, index) => {
+            return (
+                <tr key={index} onClick={this.getPatientData.bind(this, patient)}>
+                    <th scope="row">1</th>
+                    <td>{patient.prenom}</td>
+                    <td>{patient.nom}</td>
+                    <td>{patient.tel}</td>
+                    <td>{patient.siege}</td>
+                    <td>{patient.dateAjout}</td>
+                </tr>
+            )
+        })
+        let NegatifPatients = this.state.negatifCases.map((patient, index) => {
+            return (
+                <tr key={index} onClick={this.getPatientData.bind(this, patient)}>
+                    <th scope="row">1</th>
+                    <td>{patient.prenom}</td>
+                    <td>{patient.nom}</td>
+                    <td>{patient.tel}</td>
+                    <td>{patient.siege}</td>
+                    <td>{patient.dateAjout}</td>
+                </tr>
+            )
+        })
+        let healdPatients = this.state.healdCases.map((patient, index) => {
+            return (
+                <tr key={index} onClick={this.getPatientData.bind(this, patient)}>
+                    <th scope="row">1</th>
+                    <td>{patient.prenom}</td>
+                    <td>{patient.nom}</td>
+                    <td>{patient.tel}</td>
+                    <td>{patient.siege}</td>
+                    <td>{patient.dateAjout}</td>
+                </tr>
+            )
+        })
+
         return (
             <>
                 <Modal className="modal-Body" isOpen={this.state.patientModal} toggle={this.togglePatientModal.bind(this)}>
@@ -97,7 +169,11 @@ class BootstrapTable extends React.Component {
                             </Col>
                         </Row>
                         <Row>
-                            <Col xs={12}>
+                            <Col xs={6}>
+                                <h6>Numéro de Téléphone</h6>
+                                <p>{this.state.patientData.tel}</p>
+                            </Col>
+                            <Col xs={6}>
                                 <h6>Etat</h6>
                                 <p>{this.state.patientData.etat}</p>
                             </Col>
@@ -156,30 +232,7 @@ class BootstrapTable extends React.Component {
                                                     </tr>
                                                 </thead>
                                                 <tbody style={{ cursor: "pointer" }}>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                        <td>0654234176</td>
-                                                        <td>CHU Batna</td>
-                                                        <td>{Date.now()}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">2</th>
-                                                        <td>Jacob</td>
-                                                        <td>Thornton</td>
-                                                        <td>0754234126</td>
-                                                        <td>Mustafa Bacha Alger</td>
-                                                        <td>{Date.now()}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">3</th>
-                                                        <td>Larry</td>
-                                                        <td>the Bird</td>
-                                                        <td>0654234176</td>
-                                                        <td>CHU Batna</td>
-                                                        <td>{Date.now()}</td>
-                                                    </tr>
+                                                    {positifPatients}
                                                 </tbody>
                                             </Table>
                                         </Card.Body>
@@ -205,30 +258,7 @@ class BootstrapTable extends React.Component {
                                                     </tr>
                                                 </thead>
                                                 <tbody style={{ cursor: "pointer" }}>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                        <td>0654234176</td>
-                                                        <td>CHU Batna</td>
-                                                        <td>{Date.now()}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">2</th>
-                                                        <td>Jacob</td>
-                                                        <td>Thornton</td>
-                                                        <td>0754234126</td>
-                                                        <td>Mustafa Bacha Alger</td>
-                                                        <td>{Date.now()}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">3</th>
-                                                        <td>Larry</td>
-                                                        <td>the Bird</td>
-                                                        <td>0654234176</td>
-                                                        <td>CHU Batna</td>
-                                                        <td>{Date.now()}</td>
-                                                    </tr>
+                                                    {NegatifPatients}
                                                 </tbody>
                                             </Table>
                                         </Card.Body>
@@ -254,30 +284,7 @@ class BootstrapTable extends React.Component {
                                                     </tr>
                                                 </thead>
                                                 <tbody style={{ cursor: "pointer" }}>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                        <td>0654234176</td>
-                                                        <td>CHU Batna</td>
-                                                        <td>{Date.now()}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">2</th>
-                                                        <td>Jacob</td>
-                                                        <td>Thornton</td>
-                                                        <td>0754234126</td>
-                                                        <td>Mustafa Bacha Alger</td>
-                                                        <td>{Date.now()}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">3</th>
-                                                        <td>Larry</td>
-                                                        <td>the Bird</td>
-                                                        <td>0654234176</td>
-                                                        <td>CHU Batna</td>
-                                                        <td>{Date.now()}</td>
-                                                    </tr>
+                                                    {healdPatients}
                                                 </tbody>
                                             </Table>
                                         </Card.Body>
