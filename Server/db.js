@@ -36,7 +36,7 @@ const createDBs =(connection)=> {
         else {
             connection.query('CREATE TABLE admin ('
             +'username varchar(20) primary key,'
-            + 'pass varchar (20) not null'
+            + 'pass varchar (50) not null'
             +')', (err)=>{
                 if (err)
                     console.log(err);
