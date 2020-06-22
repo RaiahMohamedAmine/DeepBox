@@ -24,10 +24,9 @@ async function Login (req,res){
            // const bodyPass = crypto.pbkdf2Sync (req.body.pass,MDPHASH,10,100,'sha512').toString();
             if (req.body.pass== results[0].pass)
             {
-                jsw.sign(req.body,JSW,{expiresIn:10}, (error,token)=>{
+                jsw.sign(req.body,JSW,{expiresIn:60}, (error,token)=>{
                     if (error)
                     {
-                        console.log(error)
                         res.status(500).json({
                             type :"Err",
                             message :"An Error Occurred !",

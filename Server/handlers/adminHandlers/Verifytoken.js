@@ -18,12 +18,10 @@ async function Verifytoken (req,res,next){
                 type :"Err",
                 message : "No Authorized !"
             });
+            return;
         }
-        else{
-            next();
-        }
+        next();
     });
 }
 
 module.exports= Verifytoken;
-
