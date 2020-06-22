@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Card, Table, Tabs, Tab} from 'react-bootstrap';
+import { Row, Col, Card, Table, Tabs, Tab } from 'react-bootstrap';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 import axios from 'axios'
 
@@ -9,30 +9,30 @@ import Aux from "../../hoc/_Aux";
 class BootstrapTable extends React.Component {
     state = {
         patients: [],
-        patientDate: {
+        patientData: {
             nom: "",
             prenom: "",
             tel: "",
             adresse: "",
             siege: "",
             dateAjout: "",
+            dateNaissance: "",
+            etat: "",
         },
         patientModal: false
     }
-    
+
     componentWillMount() {
         this.refreshMembers()
     }
 
     refreshMembers() {
         axios.get('http://localhost:5200/malade/get').then((response) => {
-          this.setState({
-            patients: response.data.malades
-          }, () => {
-              console.log(this.state.patients)
-          })
+            this.setState({
+                patients: response.data.malades
+            })
         })
-      }
+    }
 
     togglePatientModal() {
         this.setState({
@@ -40,51 +40,66 @@ class BootstrapTable extends React.Component {
         })
     }
 
-    getPatientData() {
-        console.log("Before setState : " + this.state.patientModal)
+    getPatientData(data) {
         this.setState({
+            patientData: { ...data },
             patientModal: !this.state.patientModal
-        }, () => {
-            console.log("After setState : " + this.state.patientModal)
         })
 
     }
 
     render() {
+        let suspeciousPatients = this.state.patients.map((patient, index) => {
+            return (
+                <tr key={index} onClick={this.getPatientData.bind(this, patient)}>
+                    <th scope="row">1</th>
+                    <td>{patient.prenom}</td>
+                    <td>{patient.nom}</td>
+                    <td>{patient.tel}</td>
+                    <td>{patient.siege}</td>
+                    <td>{patient.dateAjout}</td>
+                </tr>
+            )
+        })
         return (
             <>
                 <Modal className="modal-Body" isOpen={this.state.patientModal} toggle={this.togglePatientModal.bind(this)}>
-                    <ModalHeader toggle={this.togglePatientModal.bind(this)}>Détails du membre</ModalHeader>
+                    <ModalHeader toggle={this.togglePatientModal.bind(this)}>Détails du patient</ModalHeader>
                     <ModalBody>
                         <Row>
                             <Col xs={6}>
                                 <h6>Prénom</h6>
-                                </Col>
+                                <p>{this.state.patientData.prenom}</p>
+                            </Col>
                             <Col xs={6}>
                                 <h6>Nom</h6>
-                                </Col>
-                        </Row>
-                        <Row>
-                            <Col xs={6}>
-                                <h6>Email</h6>
-                                </Col>
-                            <Col xs={6}>
-                                <h6>Département</h6>
-                                <p >
-                                </p>
+                                <p>{this.state.patientData.nom}</p>
                             </Col>
                         </Row>
                         <Row>
                             <Col xs={6}>
-                                <h6>Statut</h6>
+                                <h6>Adresse</h6>
+                                <p>{this.state.patientData.adresse}</p>
                             </Col>
                             <Col xs={6}>
-                                <h6>Numéro de téléphone</h6>
+                                <h6>Siége</h6>
+                                <p>{this.state.patientData.siege}</p>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col xs={6}>
+                                <h6>Date d'ajout</h6>
+                                <p>{this.state.patientData.dateAjout}</p>
+                            </Col>
+                            <Col xs={6}>
+                                <h6>Date de naissance</h6>
+                                <p>{this.state.patientData.dateNaissance}</p>
                             </Col>
                         </Row>
                         <Row>
                             <Col xs={12}>
-                                <h6>Responsabilité</h6>
+                                <h6>Etat</h6>
+                                <p>{this.state.patientData.etat}</p>
                             </Col>
                         </Row>
                     </ModalBody>
@@ -115,30 +130,7 @@ class BootstrapTable extends React.Component {
                                                     </tr>
                                                 </thead>
                                                 <tbody style={{ cursor: "pointer" }}>
-                                                    <tr onClick={this.getPatientData.bind(this)}>
-                                                        <th scope="row">1</th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                        <td>0654234176</td>
-                                                        <td>CHU Batna</td>
-                                                        <td>{Date.now()}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">2</th>
-                                                        <td>Jacob</td>
-                                                        <td>Thornton</td>
-                                                        <td>0754234126</td>
-                                                        <td>Mustafa Bacha Alger</td>
-                                                        <td>{Date.now()}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">3</th>
-                                                        <td>Larry</td>
-                                                        <td>the Bird</td>
-                                                        <td>0654234176</td>
-                                                        <td>CHU Batna</td>
-                                                        <td>{Date.now()}</td>
-                                                    </tr>
+                                                    {suspeciousPatients}
                                                 </tbody>
                                             </Table>
                                         </Card.Body>
