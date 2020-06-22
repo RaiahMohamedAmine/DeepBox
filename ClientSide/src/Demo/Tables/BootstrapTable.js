@@ -75,7 +75,7 @@ class BootstrapTable extends React.Component {
                 siege: data.siege,
                 adresse: data.adresse,
                 etat: data.etat,
-                tel: "0" + data.id,
+                tel: data.tel,
                 dateAjout: data.dateAjout,
                 dateNaissance: data.dateNaissance
             },
@@ -190,7 +190,6 @@ class BootstrapTable extends React.Component {
                                     <Card>
                                         <Card.Header>
                                             <Card.Title as="h5">Liste des cas suspects</Card.Title>
-                                            <span className="d-block m-t-5">use props <code>hover</code> with <code>Table</code> component</span>
                                         </Card.Header>
 
                                         <Card.Body>
@@ -216,7 +215,6 @@ class BootstrapTable extends React.Component {
                                     <Card>
                                         <Card.Header>
                                             <Card.Title as="h5">Liste des cas testés positif</Card.Title>
-                                            <span className="d-block m-t-5">use props <code>hover</code> with <code>Table</code> component</span>
                                         </Card.Header>
 
                                         <Card.Body>
@@ -242,7 +240,6 @@ class BootstrapTable extends React.Component {
                                     <Card>
                                         <Card.Header>
                                             <Card.Title as="h5">Liste des cas testés négatifs</Card.Title>
-                                            <span className="d-block m-t-5">use props <code>hover</code> with <code>Table</code> component</span>
                                         </Card.Header>
 
                                         <Card.Body>
@@ -268,7 +265,6 @@ class BootstrapTable extends React.Component {
                                     <Card>
                                         <Card.Header>
                                             <Card.Title as="h5">Liste des cas guérris</Card.Title>
-                                            <span className="d-block m-t-5">use props <code>hover</code> with <code>Table</code> component</span>
                                         </Card.Header>
 
                                         <Card.Body>
