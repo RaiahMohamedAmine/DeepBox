@@ -34,8 +34,8 @@ class FormsElements extends React.Component {
                                                 <Form.Control type="text" placeholder="Prénom " />
                                             </Form.Group>
                                             <Form.Group controlId="exampleForm.ControlInput1">
-                                                <Form.Label>Adresse</Form.Label>
-                                                <Form.Control type="text" placeholder="Adresse " />
+                                                <Form.Label>Date de Naissance</Form.Label>
+                                                <Form.Control type="date" />
                                             </Form.Group>
                                             <Form.Group controlId="exampleForm.ControlInput1">
                                                 <Form.Label>Téléphone</Form.Label>
@@ -53,6 +53,15 @@ class FormsElements extends React.Component {
                                         <Form.Group controlId="exampleForm.ControlInput1">
                                             <Form.Label>Siège hospitalier</Form.Label>
                                             <Form.Control type="text" placeholder="Siège hospitalier" />
+                                        </Form.Group>
+                                        <Form.Group controlId="exampleForm.ControlSelect1">
+                                            <Form.Label>État</Form.Label>
+                                            <Form.Control as="select">
+                                                <option value="Suspect">Suspect</option>
+                                                <option value="Positif">Positif</option>
+                                                <option value="Négatif">Négatif</option>
+                                                <option value="Guéris">Guéris</option>
+                                            </Form.Control>
                                         </Form.Group>
                                         <br />
                                         <Form.Group>
