@@ -1,5 +1,5 @@
 import React from 'react';
-import {Row, Col, Card, Form, Button, InputGroup, FormControl, DropdownButton, Dropdown} from 'react-bootstrap';
+import { Row, Col, Card, Form, Button, InputGroup, FormControl, DropdownButton, Dropdown } from 'react-bootstrap';
 
 import Aux from "../../hoc/_Aux";
 
@@ -13,39 +13,45 @@ class FormsElements extends React.Component {
                     <Col>
                         <Card>
                             <Card.Header>
-                                <Card.Title as="h5">Basic Component</Card.Title>
+                                <Card.Title as="h5">Ajout d'un cas suspect</Card.Title>
                             </Card.Header>
                             <Card.Body>
-                                <h5>Form controls</h5>
-                                <hr/>
+                                <h5>Ce formulaire permet de signaler tout cas suspect au niveau de votre
+                                établissement.
+                                </h5>
+                                <hr />
                                 <Row>
                                     <Col md={6}>
                                         <Form>
-                                            <Form.Group controlId="formBasicEmail">
-                                                <Form.Label>Email address</Form.Label>
-                                                <Form.Control type="email" placeholder="Enter email" />
-                                                <Form.Text className="text-muted">
-                                                    We'll never share your email with anyone else.
-                                                </Form.Text>
+                                            <Form.Group controlId="exampleForm.ControlInput1">
+                                                <Form.Label>Nom</Form.Label>
+                                                <Form.Control type="text" placeholder="Nom du cas" />
                                             </Form.Group>
-
-                                            <Form.Group controlId="formBasicPassword">
-                                                <Form.Label>Password</Form.Label>
-                                                <Form.Control type="password" placeholder="Password" />
+                                            <Form.Group controlId="exampleForm.ControlInput1">
+                                                <Form.Label>Prénom</Form.Label>
+                                                <Form.Control type="text" placeholder="Prénom du cas" />
                                             </Form.Group>
-                                            <Form.Group controlId="formBasicChecbox">
-                                                <Form.Check type="checkbox" label="Check me out" />
+                                            <Form.Group controlId="exampleForm.ControlInput1">
+                                                <Form.Label>Adresse</Form.Label>
+                                                <Form.Control type="text" placeholder="Adresse du cas" />
                                             </Form.Group>
-                                            <Button variant="primary">
-                                                Submit
-                                            </Button>
                                         </Form>
                                     </Col>
                                     <Col md={6}>
                                         <Form.Group controlId="exampleForm.ControlInput1">
-                                            <Form.Label>Text</Form.Label>
-                                            <Form.Control type="email" placeholder="Text" />
+                                            <Form.Label>Téléphone</Form.Label>
+                                            <Form.Control type="tel" placeholder="Téléphone du cas" />
                                         </Form.Group>
+                                        <Form.Group controlId="exampleForm.ControlInput1">
+                                            <Form.Label>Siège hospitalier</Form.Label>
+                                            <Form.Control type="text" placeholder="Siège hospitalier" />
+                                        </Form.Group>
+                                        <Form.Group>
+                                        <Button variant="primary">
+                                            Submit
+                                        </Button>
+                                        </Form.Group>
+                                        {/* 
                                         <Form.Group controlId="exampleForm.ControlSelect1">
                                             <Form.Label>Example select</Form.Label>
                                             <Form.Control as="select">
@@ -60,10 +66,12 @@ class FormsElements extends React.Component {
                                             <Form.Label>Example textarea</Form.Label>
                                             <Form.Control as="textarea" rows="3" />
                                         </Form.Group>
+                                        */}
                                     </Col>
                                 </Row>
+                                {/** 
                                 <h5 className="mt-5">Sizing</h5>
-                                <hr/>
+                                <hr />
                                 <Row>
                                     <Col md={6}>
                                         <Form.Control size="lg" type="text" placeholder="Large text" className="mb-3" />
@@ -90,7 +98,7 @@ class FormsElements extends React.Component {
                                     </Col>
                                 </Row>
                                 <h5 className="mt-5">Inline</h5>
-                                <hr/>
+                                <hr />
                                 <Row>
                                     <Col>
                                         <Form inline>
@@ -112,7 +120,7 @@ class FormsElements extends React.Component {
                                 <Row>
                                     <Col md={12}>
                                         <h5 className="mt-5">Checkboxes</h5>
-                                        <hr/>
+                                        <hr />
                                         <Form.Group>
                                             <Form.Check
                                                 custom
@@ -124,7 +132,7 @@ class FormsElements extends React.Component {
                                     </Col>
                                     <Col md={6}>
                                         <h5 className="mt-5">Radios</h5>
-                                        <hr/>
+                                        <hr />
                                         <Form.Group>
                                             <Form.Check
                                                 custom
@@ -142,7 +150,7 @@ class FormsElements extends React.Component {
                                             />
                                         </Form.Group>
                                         <h5 className="mt-3">Inline</h5>
-                                        <hr/>
+                                        <hr />
                                         <Form.Group>
                                             <Form.Check
                                                 inline
@@ -164,7 +172,7 @@ class FormsElements extends React.Component {
                                     </Col>
                                     <Col md={6}>
                                         <h5 className="mt-5">Range</h5>
-                                        <hr/>
+                                        <hr />
                                         <Form.Label htmlFor="customRange1">Example range</Form.Label>
                                         <input type="range" className="custom-range" defaultValue="22" id="customRange1" />
                                         <Form.Label htmlFor="customRange2">Example range</Form.Label>
@@ -173,8 +181,10 @@ class FormsElements extends React.Component {
                                         <input type="range" className="custom-range" min="0" defaultValue="1.5" max="5" step="0.5" id="customRange3" />
                                     </Col>
                                 </Row>
+                            */}
                             </Card.Body>
                         </Card>
+                                                {/**
                         <Card>
                             <Card.Header>
                                 <Card.Title as="h5">Input Group</Card.Title>
@@ -233,7 +243,7 @@ class FormsElements extends React.Component {
                                     </Col>
                                     <Col md={6}>
                                         <h5 className="mt-5">Sizing</h5>
-                                        <hr/>
+                                        <hr />
                                         <InputGroup size="sm" className="mb-3">
                                             <InputGroup.Prepend>
                                                 <InputGroup.Text id="inputGroup-sizing-sm">Small</InputGroup.Text>
@@ -260,7 +270,7 @@ class FormsElements extends React.Component {
                                     </Col>
                                     <Col md={6}>
                                         <h5 className="mt-5">Checkboxes and radios</h5>
-                                        <hr/>
+                                        <hr />
                                         <InputGroup className="mb-3">
                                             <InputGroup.Prepend>
                                                 <InputGroup.Checkbox aria-label="Checkbox for following text input" />
@@ -276,7 +286,7 @@ class FormsElements extends React.Component {
                                     </Col>
                                 </Row>
                                 <h5 className="mt-5">Button Addons</h5>
-                                <hr/>
+                                <hr />
                                 <Row>
                                     <Col md={6}>
                                         <InputGroup className="mb-3">
@@ -320,7 +330,7 @@ class FormsElements extends React.Component {
                                     </Col>
                                     <Col md={6}>
                                         <h5 className="mt-5">Buttons With Dropdown</h5>
-                                        <hr/>
+                                        <hr />
                                         <InputGroup className="mb-3">
                                             <DropdownButton as={InputGroup.Prepend} title="Dropdown" id="input-group-dropdown-1">
                                                 <Dropdown.Item href="#">Action</Dropdown.Item>
@@ -350,7 +360,7 @@ class FormsElements extends React.Component {
                                     </Col>
                                     <Col md={6}>
                                         <h5 className="mt-5">Segmented  Buttons</h5>
-                                        <hr/>
+                                        <hr />
                                         <InputGroup className="mb-3">
                                             <Dropdown as={InputGroup.Prepend}>
                                                 <Button variant="secondary">Action</Button>
@@ -385,6 +395,7 @@ class FormsElements extends React.Component {
                                 </Row>
                             </Card.Body>
                         </Card>
+*/}
                     </Col>
                 </Row>
             </Aux>
