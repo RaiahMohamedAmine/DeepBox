@@ -21,6 +21,7 @@ class BootstrapTable extends React.Component {
             dateAjout: "",
             dateNaissance: "",
             etat: "",
+            sexe:''
         },
         patientModal: false
     }
@@ -77,7 +78,8 @@ class BootstrapTable extends React.Component {
                 etat: data.etat,
                 tel: data.tel,
                 dateAjout: data.dateAjout,
-                dateNaissance: data.dateNaissance
+                dateNaissance: data.dateNaissance,
+                sexe: data.sexe
             },
             patientModal: !this.state.patientModal
         })
@@ -93,6 +95,7 @@ class BootstrapTable extends React.Component {
                     <td>{patient.tel}</td>
                     <td>{patient.siege}</td>
                     <td>{patient.dateAjout}</td>
+                    <td>{patient.sexe}</td>
                 </tr>
             )
         })
@@ -105,6 +108,7 @@ class BootstrapTable extends React.Component {
                     <td>{patient.tel}</td>
                     <td>{patient.siege}</td>
                     <td>{patient.dateAjout}</td>
+                    <td>{patient.sexe}</td>
                 </tr>
             )
         })
@@ -117,6 +121,7 @@ class BootstrapTable extends React.Component {
                     <td>{patient.tel}</td>
                     <td>{patient.siege}</td>
                     <td>{patient.dateAjout}</td>
+                    <td>{patient.sexe}</td>
                 </tr>
             )
         })
@@ -129,6 +134,7 @@ class BootstrapTable extends React.Component {
                     <td>{patient.tel}</td>
                     <td>{patient.siege}</td>
                     <td>{patient.dateAjout}</td>
+                    <td>{patient.sexe}</td>
                 </tr>
             )
         })
@@ -150,22 +156,22 @@ class BootstrapTable extends React.Component {
                         </Row>
                         <Row>
                             <Col xs={6}>
-                                <h6>Adresse</h6>
-                                <p>{this.state.patientData.adresse}</p>
+                                <h6>Date de naissance</h6>
+                                <p>{this.state.patientData.dateNaissance}</p>
                             </Col>
                             <Col xs={6}>
-                                <h6>Siége</h6>
-                                <p>{this.state.patientData.siege}</p>
+                                <h6>Adresse</h6>
+                                <p>{this.state.patientData.adresse}</p>
                             </Col>
                         </Row>
                         <Row>
                             <Col xs={6}>
-                                <h6>Date d'ajout</h6>
-                                <p>{this.state.patientData.dateAjout}</p>
+                                <h6>Siége</h6>
+                                <p>{this.state.patientData.siege}</p>
                             </Col>
                             <Col xs={6}>
-                                <h6>Date de naissance</h6>
-                                <p>{this.state.patientData.dateNaissance}</p>
+                                <h6>Date d'ajout</h6>
+                                <p>{this.state.patientData.dateAjout}</p>
                             </Col>
                         </Row>
                         <Row>
@@ -176,6 +182,12 @@ class BootstrapTable extends React.Component {
                             <Col xs={6}>
                                 <h6>Etat</h6>
                                 <p>{this.state.patientData.etat}</p>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col xs={6}>
+                                <h6>Sexe</h6>
+                                <p>{this.state.patientData.sexe}</p>
                             </Col>
                         </Row>
                     </ModalBody>
@@ -202,6 +214,7 @@ class BootstrapTable extends React.Component {
                                                         <th>Téléphone</th>
                                                         <th>Siége</th>
                                                         <th>Date</th>
+                                                        <th>Sexe</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody style={{ cursor: "pointer" }}>
@@ -227,6 +240,7 @@ class BootstrapTable extends React.Component {
                                                         <th>Téléphone</th>
                                                         <th>Siége</th>
                                                         <th>Date</th>
+                                                        <th>Sexe</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody style={{ cursor: "pointer" }}>
@@ -252,6 +266,7 @@ class BootstrapTable extends React.Component {
                                                         <th>Téléphone</th>
                                                         <th>Siége</th>
                                                         <th>Date</th>
+                                                        <th>Sexe</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody style={{ cursor: "pointer" }}>
@@ -277,6 +292,7 @@ class BootstrapTable extends React.Component {
                                                         <th>Téléphone</th>
                                                         <th>Siége</th>
                                                         <th>Date</th>
+                                                        <th>Sexe</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody style={{ cursor: "pointer" }}>
