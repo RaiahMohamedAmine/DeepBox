@@ -27,11 +27,15 @@ class FormsElements extends React.Component {
                                         <Form>
                                             <Form.Group controlId="exampleForm.ControlInput1">
                                                 <Form.Label>Nom</Form.Label>
-                                                <Form.Control type="text" placeholder="Nom du cas" />
+                                                <Form.Control type="text" placeholder="Nom " />
                                             </Form.Group>
                                             <Form.Group controlId="exampleForm.ControlInput1">
                                                 <Form.Label>Prénom</Form.Label>
-                                                <Form.Control type="text" placeholder="Prénom du cas" />
+                                                <Form.Control type="text" placeholder="Prénom " />
+                                            </Form.Group>
+                                            <Form.Group controlId="exampleForm.ControlInput1">
+                                                <Form.Label>Adresse</Form.Label>
+                                                <Form.Control type="text" placeholder="Adresse " />
                                             </Form.Group>
                                             <Form.Group controlId="exampleForm.ControlInput1">
                                                 <Form.Label>Téléphone</Form.Label>
@@ -44,7 +48,7 @@ class FormsElements extends React.Component {
                                     <Col md={6}>
                                         <Form.Group controlId="exampleForm.ControlInput1">
                                             <Form.Label>Adresse</Form.Label>
-                                            <Form.Control type="text" placeholder="Adresse du cas" />
+                                            <Form.Control type="text" placeholder="Adresse " />
                                         </Form.Group>
                                         <Form.Group controlId="exampleForm.ControlInput1">
                                             <Form.Label>Siège hospitalier</Form.Label>
