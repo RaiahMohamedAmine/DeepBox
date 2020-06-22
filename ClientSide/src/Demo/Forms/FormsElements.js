@@ -114,7 +114,7 @@ class FormsElements extends React.Component {
                                                 <h6>Téléphone</h6>
                                                 <PhoneInput
                                                     country={'dz'}
-                                                    value={this.state.patientData.id}
+                                                    value={this.state.patientData.tel}
                                                     onChange={phone => {
                                                         var { patientData } = this.state
                                                         patientData.tel = phone
@@ -168,8 +168,8 @@ class FormsElements extends React.Component {
                                             >
                                                 <option value="Suspect">Suspect</option>
                                                 <option value="Positif">Positif</option>
-                                                <option value="Négatif">Négatif</option>
-                                                <option value="Guéris">Guéri</option>
+                                                <option value="Negatif">Négatif</option>
+                                                <option value="Gueri">Guéri</option>
                                             </Input>
                                         </FormGroup>
                                         <br />

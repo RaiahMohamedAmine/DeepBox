@@ -44,14 +44,14 @@ class BootstrapTable extends React.Component {
                 console.log(this.state.positifCases)
             })
         })
-        axios.get('http://localhost:5200/malade/get/Négatif').then((response) => {
+        axios.get('http://localhost:5200/malade/get/Negatif').then((response) => {
             this.setState({
-                NegatifCases: response.data.malades
+                negatifCases: response.data.malades
             }, () => {
                 console.log(this.state.negatifCases)
             })
         })
-        axios.get('http://localhost:5200/malade/get/Guéri').then((response) => {
+        axios.get('http://localhost:5200/malade/get/Gueri').then((response) => {
             this.setState({
                 healdCases: response.data.malades
             }, () => {
@@ -84,10 +84,10 @@ class BootstrapTable extends React.Component {
     }
 
     render() {
-        let suspeciousPatients = this.state.suspects.map((patient, index) => {
+        let suspeciousPatients = this.state.suspects.map((patient, index) => {  
             return (
                 <tr key={index} onClick={this.getPatientData.bind(this, patient)}>
-                    <th scope="row">1</th>
+                    <th scope="row">{index+1}</th>
                     <td>{patient.prenom}</td>
                     <td>{patient.nom}</td>
                     <td>{patient.tel}</td>
@@ -99,7 +99,7 @@ class BootstrapTable extends React.Component {
         let positifPatients = this.state.positifCases.map((patient, index) => {
             return (
                 <tr key={index} onClick={this.getPatientData.bind(this, patient)}>
-                    <th scope="row">1</th>
+                    <th scope="row">{index+1}</th>
                     <td>{patient.prenom}</td>
                     <td>{patient.nom}</td>
                     <td>{patient.tel}</td>
@@ -111,7 +111,7 @@ class BootstrapTable extends React.Component {
         let NegatifPatients = this.state.negatifCases.map((patient, index) => {
             return (
                 <tr key={index} onClick={this.getPatientData.bind(this, patient)}>
-                    <th scope="row">1</th>
+                    <th scope="row">{index+1}</th>
                     <td>{patient.prenom}</td>
                     <td>{patient.nom}</td>
                     <td>{patient.tel}</td>
@@ -123,7 +123,7 @@ class BootstrapTable extends React.Component {
         let healdPatients = this.state.healdCases.map((patient, index) => {
             return (
                 <tr key={index} onClick={this.getPatientData.bind(this, patient)}>
-                    <th scope="row">1</th>
+                    <th scope="row">{index+1}</th>
                     <td>{patient.prenom}</td>
                     <td>{patient.nom}</td>
                     <td>{patient.tel}</td>
