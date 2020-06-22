@@ -1,14 +1,53 @@
 import React from 'react';
-import { Row, Col, Card, Form, Button, InputGroup, FormControl, DropdownButton, Dropdown } from 'react-bootstrap';
+import { Row, Col, Card, Form, Button } from 'react-bootstrap';
+import { Input, FormGroup } from 'reactstrap'
+import axios from 'axios'
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import Aux from "../../hoc/_Aux";
 
 class FormsElements extends React.Component {
+    state = {
+        patientData: {
+            nom: "",
+            prenom: "",
+            adresse: "",
+            siege: "",
+            dateAjout: "",
+            dateNaissance: "",
+            etat: "",
+            tel: "",
+        },
+    }
+
+    addPatient() {
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1;
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+        if (mm < 10) {
+            mm = '0' + mm;
+        }
+        today = mm + '-' + dd + '-' + yyyy;
+        var phone = this.state.patientData.tel.slice(3)
+        var { patientData } = this.state
+        patientData.dateAjout = today
+        patientData.tel = phone
+        this.setState({ patientData })
+        let patient = this.state.patientData
+        console.log(patient)
+        axios.post('http://localhost:5200/malade/add', { patient })
+            .then((response) => {
+                alert(patient.prenom + " " + patient.nom + " a été ajouté !")
+            })
+    }
 
     render() {
         return (
-        
+
             <Aux>
                 <Row>
                     <Col>
@@ -24,50 +63,122 @@ class FormsElements extends React.Component {
                                 <Row>
                                     <Col md={6}>
                                         <Form>
-                                            <Form.Group controlId="exampleForm.ControlInput1">
-                                                <Form.Label>Nom</Form.Label>
-                                                <Form.Control type="text" placeholder="Nom " name='nom'/>
-                                            </Form.Group>
-                                            <Form.Group controlId="exampleForm.ControlInput1">
-                                                <Form.Label>Prénom</Form.Label>
-                                                <Form.Control type="text" placeholder="Prénom " name='prenom' />
-                                            </Form.Group>
-                                            <Form.Group controlId="exampleForm.ControlInput1">
-                                                <Form.Label>Date de Naissance</Form.Label>
-                                                <Form.Control type="date" name='dateNaissance'/>
-                                            </Form.Group>
-                                            <Form.Group controlId="exampleForm.ControlInput1">
-                                                <Form.Label>Téléphone</Form.Label>
-                                                <PhoneInput
-                                                    country={'dz'} 
+                                            <FormGroup>
+                                                <h6>Nom</h6>
+                                                <Input
+                                                    placeholder="Nom"
+                                                    type="text"
+                                                    required
+                                                    pattern="[A-Za-z, ]*"
+                                                    title="Lettres uniquement !"
+                                                    onChange={(e) => {
+                                                        var { patientData } = this.state
+                                                        patientData.nom = e.target.value
+                                                        this.setState({ patientData })
+                                                    }}
                                                 />
-                                            </Form.Group>
+                                            </FormGroup>
+                                            <FormGroup>
+                                                <h6>Prénom</h6>
+                                                <Input
+                                                    placeholder="Prénom"
+                                                    type="text"
+                                                    required
+                                                    pattern="[A-Za-z, ]*"
+                                                    title="Lettres uniquement !"
+                                                    onChange={(e) => {
+                                                        var { patientData } = this.state
+                                                        patientData.prenom = e.target.value
+                                                        this.setState({ patientData })
+                                                    }}
+                                                />
+                                            </FormGroup>
+                                            <FormGroup>
+                                                <h6>Date de naissance</h6>
+                                                <Input
+                                                    placeholder="dd-mm-yyyy"
+                                                    type="date"
+                                                    min="01-01-1900" max="31-12-2030"
+                                                    required
+                                                    min="01-01-1997" max="12-31-2030"
+                                                    pattern="^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$"
+                                                    title="Veuillez suivre le format correct !"
+                                                    onChange={(e) => {
+                                                        var { patientData } = this.state
+                                                        patientData.dateNaissance = e.target.value
+                                                        this.setState({ patientData })
+                                                    }}
+                                                />
+                                            </FormGroup>
+                                            <FormGroup>
+                                                <h6>Téléphone</h6>
+                                                <PhoneInput
+                                                    country={'dz'}
+                                                    value={this.state.patientData.id}
+                                                    onChange={phone => {
+                                                        var { patientData } = this.state
+                                                        patientData.tel = phone
+                                                        this.setState({ patientData })
+                                                    }}
+                                                />
+                                            </FormGroup>
+
                                         </Form>
                                     </Col>
                                     <Col md={6}>
-                                        <Form.Group controlId="exampleForm.ControlInput1">
-                                            <Form.Label>Adresse</Form.Label>
-                                            <Form.Control type="text" placeholder="Adresse " name="adresse"/>
-                                        </Form.Group>
-                                        <Form.Group controlId="exampleForm.ControlInput1">
-                                            <Form.Label>Siège hospitalier</Form.Label>
-                                            <Form.Control type="text" placeholder="Siège hospitalier" name='siege'/>
-                                        </Form.Group>
-                                        <Form.Group controlId="exampleForm.ControlSelect1">
-                                            <Form.Label>État</Form.Label>
-                                            <Form.Control as="select" name='etat'>
+                                        <FormGroup>
+                                            <h6>Adresse</h6>
+                                            <Input
+                                                placeholder="Adresse"
+                                                type="text"
+                                                required
+                                                pattern="[A-Za-z, ]*"
+                                                title="Lettres uniquement !"
+                                                onChange={(e) => {
+                                                    var { patientData } = this.state
+                                                    patientData.adresse = e.target.value
+                                                    this.setState({ patientData })
+                                                }}
+                                            />
+                                        </FormGroup>
+                                        <FormGroup>
+                                            <h6>Siége</h6>
+                                            <Input
+                                                placeholder="Etablissement hospitalier"
+                                                type="text"
+                                                required
+                                                pattern="[A-Za-z, ]*"
+                                                title="Lettres uniquement !"
+                                                onChange={(e) => {
+                                                    var { patientData } = this.state
+                                                    patientData.siege = e.target.value
+                                                    this.setState({ patientData })
+                                                }}
+                                            />
+                                        </FormGroup>
+                                        <FormGroup controlId="exampleForm.ControlSelect1">
+                                            <h6>État</h6>
+                                            <Input
+                                                type="select"
+                                                onChange={(e) => {
+                                                    var { patientData } = this.state
+                                                    patientData.etat = e.target.value
+                                                    this.setState({ patientData })
+                                                }}
+                                            >
                                                 <option value="Suspect">Suspect</option>
                                                 <option value="Positif">Positif</option>
                                                 <option value="Négatif">Négatif</option>
-                                                <option value="Guéris">Guéris</option>
-                                            </Form.Control>
-                                        </Form.Group>
+                                                <option value="Guéris">Guéri</option>
+                                            </Input>
+                                        </FormGroup>
                                         <br />
-                                        <Form.Group>
-                                            <Button variant="primary">
-                                                Submit
+                                        <FormGroup>
+                                            <Button variant="primary" onClick={this.addPatient.bind(this)}>
+                                                Ajouter
                                         </Button>
-                                        </Form.Group>
+                                        </FormGroup>
+
                                         {/* 
                                         <Form.Group controlId="exampleForm.ControlSelect1">
                                             <Form.Label>Example select</Form.Label>
