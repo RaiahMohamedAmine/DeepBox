@@ -1,13 +1,26 @@
-import React from 'react';
+import React, {useState}from 'react';
 import { Row, Col, Card, Form, Button, InputGroup, FormControl, DropdownButton, Dropdown } from 'react-bootstrap';
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import Aux from "../../hoc/_Aux";
 
 class FormsElements extends React.Component {
-
+    constructor(props)
+    {
+        super(props);
+        this.formValues={
+            id :'',
+            nom :'',
+            prenom :'',
+            adresse:'',
+            etat :'',
+            tel :'',
+            siege :'',
+            dateNaissance :'',
+            dateAjout :'',
+        }
+    }
     render() {
-
         return (
         
             <Aux>
@@ -27,20 +40,20 @@ class FormsElements extends React.Component {
                                         <Form>
                                             <Form.Group controlId="exampleForm.ControlInput1">
                                                 <Form.Label>Nom</Form.Label>
-                                                <Form.Control type="text" placeholder="Nom " />
+                                                <Form.Control type="text" placeholder="Nom " name='nom'/>
                                             </Form.Group>
                                             <Form.Group controlId="exampleForm.ControlInput1">
                                                 <Form.Label>Prénom</Form.Label>
-                                                <Form.Control type="text" placeholder="Prénom " />
+                                                <Form.Control type="text" placeholder="Prénom " name='prenom' />
                                             </Form.Group>
                                             <Form.Group controlId="exampleForm.ControlInput1">
                                                 <Form.Label>Date de Naissance</Form.Label>
-                                                <Form.Control type="date" />
+                                                <Form.Control type="date" name='dateNaissance'/>
                                             </Form.Group>
                                             <Form.Group controlId="exampleForm.ControlInput1">
                                                 <Form.Label>Téléphone</Form.Label>
                                                 <PhoneInput
-                                                    country={'dz'}
+                                                    country={'dz'} 
                                                 />
                                             </Form.Group>
                                         </Form>
@@ -48,15 +61,15 @@ class FormsElements extends React.Component {
                                     <Col md={6}>
                                         <Form.Group controlId="exampleForm.ControlInput1">
                                             <Form.Label>Adresse</Form.Label>
-                                            <Form.Control type="text" placeholder="Adresse " />
+                                            <Form.Control type="text" placeholder="Adresse " name="adresse"/>
                                         </Form.Group>
                                         <Form.Group controlId="exampleForm.ControlInput1">
                                             <Form.Label>Siège hospitalier</Form.Label>
-                                            <Form.Control type="text" placeholder="Siège hospitalier" />
+                                            <Form.Control type="text" placeholder="Siège hospitalier" name='siege'/>
                                         </Form.Group>
                                         <Form.Group controlId="exampleForm.ControlSelect1">
                                             <Form.Label>État</Form.Label>
-                                            <Form.Control as="select">
+                                            <Form.Control as="select" name='etat'>
                                                 <option value="Suspect">Suspect</option>
                                                 <option value="Positif">Positif</option>
                                                 <option value="Négatif">Négatif</option>
