@@ -1,11 +1,16 @@
+
+
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 
 import './../../../assets/scss/style.scss';
 import Aux from "../../../hoc/_Aux";
 import Breadcrumb from "../../../App/layout/AdminLayout/Breadcrumb";
+import { withCookies } from 'react-cookie';
 
 class SignUp1 extends React.Component {
+    onClick () {
+    }
     render () {
         return(
             <Aux>
@@ -25,10 +30,10 @@ class SignUp1 extends React.Component {
                                 </div>
                                 <h3 className="mb-4">Login</h3>
                                 <div className="input-group mb-3">
-                                    <input type="email" className="form-control" placeholder="Email"/>
+                                    <input type="text" className="form-control" placeholder="Username" ref='username'/>
                                 </div>
                                 <div className="input-group mb-4">
-                                    <input type="password" className="form-control" placeholder="password"/>
+                                    <input type="password" className="form-control" placeholder="password" ref='pass'/>
                                 </div>
                                 <div className="form-group text-left">
                                     <div className="checkbox checkbox-fill d-inline">
@@ -36,7 +41,7 @@ class SignUp1 extends React.Component {
                                             <label htmlFor="checkbox-fill-a1" className="cr"> Save credentials</label>
                                     </div>
                                 </div>
-                                <button className="btn btn-primary shadow-2 mb-4" onClick={this.props.VerifyAuth}>Login</button>
+                                <button className="btn btn-primary shadow-2 mb-4" onClick={this.onClick.bind(this)}>Login</button>
                                 <p className="mb-2 text-muted">Forgot password? <NavLink to="/auth/reset-password-1">Reset</NavLink></p>
                                 <p className="mb-0 text-muted">Don’t have an account? <NavLink to="/auth/signup-1">Signup</NavLink></p>
                             </div>
@@ -48,4 +53,6 @@ class SignUp1 extends React.Component {
     }
 }
 
-export default SignUp1;
+export default withCookies(SignUp1);
+
+
