@@ -1,5 +1,5 @@
 const Malade = require('../handlers/maladeHandlers/index');
-const VerifyToken = require('../handlers/adminHandlers/Verifytoken');
+const VerifyAuth = require('../handlers/adminHandlers/VerifyAuth');
 
 module.exports =(app)=>{
     app.post('/malade/add',Malade.AddMalade);

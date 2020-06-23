@@ -1,11 +1,11 @@
 const AddAdmin  = require('./addAdmin');
 const Login = require('./login');
-const Verifytoken = require('./Verifytoken');
+const VerifyAuth = require('./VerifyAuth');
 const Logout = require('./logout');
 
 module.exports={
     AddAdmin,
     Login,
-    Verifytoken,
+    VerifyAuth,
     Logout
 }
