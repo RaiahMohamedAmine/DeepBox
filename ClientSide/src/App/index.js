@@ -25,6 +25,13 @@ class App extends Component {
             loading:false
         });
     }
+    f = ()=>{
+        this.setState({
+            logged:true
+        }, ()=>{
+            console.log (this.state.logged);
+        })
+    }
     render() {
         const menu = routes.map((route, index) => {
           return (route.component) ? (
@@ -52,7 +59,7 @@ class App extends Component {
                                 </Spinner>  :
                                 this.state.logged? 
                                 <Route path="/" component={AdminLayout} /> : 
-                                <SignIn ></SignIn>
+                                <SignIn VerifyAuth={this.f.bind(this)}></SignIn>
                             }
                             
                         </Switch>
