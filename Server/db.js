@@ -21,12 +21,12 @@ connection.connect((err)=>{
 
 const createDBs =(connection)=> {
         connection.query('CREATE TABLE malade ('
-        +'id varchar(9) primary key,'
         +'nom varchar(20) not null,'
         +'prenom varchar(20) not null,'
-        +'etat varchar(20) not null default \'negatif\' CHECK (etat=negatif OR etat=positif OR etat=suspect),'
-        +'tel varchar(10) unique,'
+        +'etat varchar(20) not null,'
+        +'tel varchar(10) primary key,'
         +'adresse varchar(30) not null,'
+        +'sexe varchar(5) not null,'
         +'siege varchar(20) not null,'
         +'dateNaissance varchar(10) not null,'
         +'dateAjout varchar(20) not null'

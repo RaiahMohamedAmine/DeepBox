@@ -1,6 +1,7 @@
 const connection = require('../../db');
 
 async function addMalade (req,res){
+    console.log(req.body)
     if (!req.body)
     {
         res.status(400).json({

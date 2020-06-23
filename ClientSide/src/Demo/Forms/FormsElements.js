@@ -16,8 +16,9 @@ class FormsElements extends React.Component {
             siege: "",
             dateAjout: "",
             dateNaissance: "",
-            etat: "",
+            etat: "Suspect",
             tel: "",
+            sexe: "Homme",
         },
         canSubmit: false
     }
@@ -129,6 +130,20 @@ class FormsElements extends React.Component {
                                         </Col>
                                         <Col xs={6}>
                                             <FormGroup>
+                                                <h6>Téléphone</h6>
+                                                <PhoneInput
+                                                    country={'dz'}
+                                                    value={this.state.patientData.tel}
+                                                    onChange={phone => {
+                                                        var { patientData } = this.state
+                                                        patientData.tel = phone
+                                                        this.setState({ patientData })
+                                                    }}
+                                                />
+                                            </FormGroup>
+                                    </Col>
+                                    <Col md={6}>
+                                        <FormGroup>
                                             <h6>Adresse</h6>
                                             <Input
                                                 placeholder="Adresse"
@@ -181,6 +196,8 @@ class FormsElements extends React.Component {
                                     <Row>
                                         <Col xs={6}>
                                         <h6>État</h6>
+                                        <FormGroup>
+                                            <h6>État</h6>
                                             <Input
                                                 type="select"
                                                 onChange={(e) => {
@@ -191,16 +208,34 @@ class FormsElements extends React.Component {
                                             >
                                                 <option value="Suspect">Suspect</option>
                                                 <option value="Positif">Positif</option>
-                                                <option value="Négatif">Négatif</option>
-                                                <option value="Guéris">Guéri</option>
+                                                <option value="Negatif">Négatif</option>
+                                                <option value="Gueri">Guéri</option>
+                                            </Input>
+                                        </FormGroup>
+                                        </Col>
+                                        {/** 
+                                        <FormGroup>
+                                            <h6>Sexe</h6>
+                                            <Input
+                                                type="select"
+                                                onChange={(e) => {
+                                                    var { patientData } = this.state
+                                                    patientData.sexe = e.target.value
+                                                    this.setState({ patientData })
+                                                }}
+                                            >
+                                                <option value="Homme">Homme</option>
+                                                <option value="Femme">Femme</option>
                                             </Input>
                                         </Col>
+                                        */}
                                         <Col xs={6}>
                                             <br />
                                             <FormGroup>
                                                 <Button color="warning" className="btn-round" type="submit">Ajouter !</Button>
                                             </FormGroup>
                                         </Col>
+                                        
                                     </Row>
                                 </Formsy>
                                                                 {/** 

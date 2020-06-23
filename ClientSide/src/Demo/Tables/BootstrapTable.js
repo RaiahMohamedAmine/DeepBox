@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Card, Table, Tabs, Tab } from 'react-bootstrap';
+import { Row, Col, Card, Table, Tabs, Tab,Spinner } from 'react-bootstrap';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 import axios from 'axios'
 
@@ -20,8 +20,10 @@ class BootstrapTable extends React.Component {
             dateAjout: "",
             dateNaissance: "",
             etat: "",
-            tel:""
+            tel:"",
+            sexe:''
         },
+        loading :0,
         patientModal: false
     }
 
@@ -32,28 +34,32 @@ class BootstrapTable extends React.Component {
     refreshMembers() {
         axios.get('http://localhost:5200/malade/get/Suspect').then((response) => {
             this.setState({
-                suspects: response.data.malades
+                suspects: response.data.malades,
+                loading : this.state.loading+1
             }, () => {
                 console.log(this.state.suspects)
             })
         })
         axios.get('http://localhost:5200/malade/get/Positif').then((response) => {
             this.setState({
-                positifCases: response.data.malades
+                positifCases: response.data.malades,
+                loading : this.state.loading+1
             }, () => {
                 console.log(this.state.positifCases)
             })
         })
-        axios.get('http://localhost:5200/malade/get/Négatif').then((response) => {
+        axios.get('http://localhost:5200/malade/get/Negatif').then((response) => {
             this.setState({
-                negatifCases: response.data.malades
+                negatifCases: response.data.malades,
+                loading : this.state.loading+1
             }, () => {
                 console.log(this.state.negatifCases)
             })
         })
-        axios.get('http://localhost:5200/malade/get/Guéri').then((response) => {
+        axios.get('http://localhost:5200/malade/get/Gueri').then((response) => {
             this.setState({
-                healdCases: response.data.malades
+                healdCases: response.data.malades,
+                loading : this.state.loading+1
             }, () => {
                 console.log(this.state.healdCases)
             })
@@ -76,59 +82,65 @@ class BootstrapTable extends React.Component {
                 adresse: data.adresse,
                 etat: data.etat,
                 tel: "0" + data.tel,
+                tel: data.tel,
                 dateAjout: data.dateAjout,
-                dateNaissance: data.dateNaissance
+                dateNaissance: data.dateNaissance,
+                sexe: data.sexe
             },
             patientModal: !this.state.patientModal
         })
     }
 
     render() {
-        let suspeciousPatients = this.state.suspects.map((patient, index) => {
+        let suspeciousPatients = this.state.suspects.map((patient, index) => {  
             return (
                 <tr key={index} onClick={this.getPatientData.bind(this, patient)}>
-                    <th scope="row">1</th>
+                    <th scope="row">{index+1}</th>
                     <td>{patient.prenom}</td>
                     <td>{patient.nom}</td>
                     <td>{patient.tel}</td>
                     <td>{patient.siege}</td>
                     <td>{patient.dateAjout}</td>
+                    <td>{patient.sexe}</td>
                 </tr>
             )
         })
         let positifPatients = this.state.positifCases.map((patient, index) => {
             return (
                 <tr key={index} onClick={this.getPatientData.bind(this, patient)}>
-                    <th scope="row">1</th>
+                    <th scope="row">{index+1}</th>
                     <td>{patient.prenom}</td>
                     <td>{patient.nom}</td>
                     <td>{patient.tel}</td>
                     <td>{patient.siege}</td>
                     <td>{patient.dateAjout}</td>
+                    <td>{patient.sexe}</td>
                 </tr>
             )
         })
         let NegatifPatients = this.state.negatifCases.map((patient, index) => {
             return (
                 <tr key={index} onClick={this.getPatientData.bind(this, patient)}>
-                    <th scope="row">1</th>
+                    <th scope="row">{index+1}</th>
                     <td>{patient.prenom}</td>
                     <td>{patient.nom}</td>
                     <td>{patient.tel}</td>
                     <td>{patient.siege}</td>
                     <td>{patient.dateAjout}</td>
+                    <td>{patient.sexe}</td>
                 </tr>
             )
         })
         let healdPatients = this.state.healdCases.map((patient, index) => {
             return (
                 <tr key={index} onClick={this.getPatientData.bind(this, patient)}>
-                    <th scope="row">1</th>
+                    <th scope="row">{index+1}</th>
                     <td>{patient.prenom}</td>
                     <td>{patient.nom}</td>
                     <td>{patient.tel}</td>
                     <td>{patient.siege}</td>
                     <td>{patient.dateAjout}</td>
+                    <td>{patient.sexe}</td>
                 </tr>
             )
         })
@@ -150,22 +162,22 @@ class BootstrapTable extends React.Component {
                         </Row>
                         <Row>
                             <Col xs={6}>
-                                <h6>Adresse</h6>
-                                <p>{this.state.patientData.adresse}</p>
+                                <h6>Date de naissance</h6>
+                                <p>{this.state.patientData.dateNaissance}</p>
                             </Col>
                             <Col xs={6}>
-                                <h6>Siége</h6>
-                                <p>{this.state.patientData.siege}</p>
+                                <h6>Adresse</h6>
+                                <p>{this.state.patientData.adresse}</p>
                             </Col>
                         </Row>
                         <Row>
                             <Col xs={6}>
-                                <h6>Date d'ajout</h6>
-                                <p>{this.state.patientData.dateAjout}</p>
+                                <h6>Siége</h6>
+                                <p>{this.state.patientData.siege}</p>
                             </Col>
                             <Col xs={6}>
-                                <h6>Date de naissance</h6>
-                                <p>{this.state.patientData.dateNaissance}</p>
+                                <h6>Date d'ajout</h6>
+                                <p>{this.state.patientData.dateAjout}</p>
                             </Col>
                         </Row>
                         <Row>
@@ -178,6 +190,12 @@ class BootstrapTable extends React.Component {
                                 <p>{this.state.patientData.etat}</p>
                             </Col>
                         </Row>
+                        <Row>
+                            <Col xs={6}>
+                                <h6>Sexe</h6>
+                                <p>{this.state.patientData.sexe}</p>
+                            </Col>
+                        </Row>
                     </ModalBody>
                     <ModalFooter>
                     </ModalFooter>
@@ -187,108 +205,152 @@ class BootstrapTable extends React.Component {
                         <Col>
                             <Tabs defaultActiveKey="suspects" id="uncontrolled-tab-example">
                                 <Tab eventKey="suspects" title="Cas suspects">
-                                    <Card>
-                                        <Card.Header>
-                                            <Card.Title as="h5">Liste des cas suspects</Card.Title>
-                                            <span className="d-block m-t-5">use props <code>hover</code> with <code>Table</code> component</span>
-                                        </Card.Header>
+                                {
+                                        this.state.loading>=4 ? this.state.suspects.length>0 ? 
+                                        <Card>
+                                            <Card.Header>
+                                                <Card.Title as="h5">Liste des cas Suspects</Card.Title>
+                                            </Card.Header>
 
-                                        <Card.Body>
-                                            <Table responsive hover>
-                                                <thead>
-                                                    <tr>
-                                                        <th>#</th>
-                                                        <th>Prénom</th>
-                                                        <th>Nom</th>
-                                                        <th>Téléphone</th>
-                                                        <th>Siége</th>
-                                                        <th>Date</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody style={{ cursor: "pointer" }}>
-                                                    {suspeciousPatients}
-                                                </tbody>
-                                            </Table>
-                                        </Card.Body>
-                                    </Card>
+                                            <Card.Body>
+                                                <Table responsive hover>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Prénom</th>
+                                                            <th>Nom</th>
+                                                            <th>Téléphone</th>
+                                                            <th>Siége</th>
+                                                            <th>Date</th>
+                                                            <th>Sexe</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody style={{ cursor: "pointer" }}>
+                                                        {suspeciousPatients}
+                                                    </tbody>
+                                                </Table>
+                                            </Card.Body>
+                                        </Card> :
+                                        <Card>
+                                            <Card.Header>
+                                                <Card.Title as="h5">Aucun malade n'est Suspect</Card.Title>
+                                            </Card.Header>
+                                        </Card> :
+                                        <Spinner animation="border" role="status">
+                                            <span className="sr-only">Loading...</span>
+                                        </Spinner>
+                                    }
                                 </Tab>
                                 <Tab eventKey="positif" title="Cas positifs">
-                                    <Card>
-                                        <Card.Header>
-                                            <Card.Title as="h5">Liste des cas testés positif</Card.Title>
-                                            <span className="d-block m-t-5">use props <code>hover</code> with <code>Table</code> component</span>
-                                        </Card.Header>
+                                {
+                                        this.state.loading>=4 ? this.state.positifCases.length>0 ? 
+                                        <Card>
+                                            <Card.Header>
+                                                <Card.Title as="h5">Liste des cas testés Positifs</Card.Title>
+                                            </Card.Header>
 
-                                        <Card.Body>
-                                            <Table responsive hover>
-                                                <thead>
-                                                    <tr>
-                                                        <th>#</th>
-                                                        <th>Prénom</th>
-                                                        <th>Nom</th>
-                                                        <th>Téléphone</th>
-                                                        <th>Siége</th>
-                                                        <th>Date</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody style={{ cursor: "pointer" }}>
-                                                    {positifPatients}
-                                                </tbody>
-                                            </Table>
-                                        </Card.Body>
-                                    </Card>
+                                            <Card.Body>
+                                                <Table responsive hover>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Prénom</th>
+                                                            <th>Nom</th>
+                                                            <th>Téléphone</th>
+                                                            <th>Siége</th>
+                                                            <th>Date</th>
+                                                            <th>Sexe</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody style={{ cursor: "pointer" }}>
+                                                        {positifPatients}
+                                                    </tbody>
+                                                </Table>
+                                            </Card.Body>
+                                        </Card> :
+                                        <Card>
+                                            <Card.Header>
+                                                <Card.Title as="h5">Aucun malade n'est testé Positif</Card.Title>
+                                            </Card.Header>
+                                        </Card> :
+                                        <Spinner animation="border" role="status">
+                                            <span className="sr-only">Loading...</span>
+                                        </Spinner>
+                                    }
                                 </Tab>
-                                <Tab eventKey="negeatif" title="Cas négatifs">
-                                    <Card>
-                                        <Card.Header>
-                                            <Card.Title as="h5">Liste des cas testés négatifs</Card.Title>
-                                            <span className="d-block m-t-5">use props <code>hover</code> with <code>Table</code> component</span>
-                                        </Card.Header>
+                                <Tab eventKey="negatif" title="Cas négatifs">
+                                    {
+                                        this.state.loading>=4 ? this.state.negatifCases.length>0 ? 
+                                        <Card>
+                                            <Card.Header>
+                                                <Card.Title as="h5">Liste des cas testés négatifs</Card.Title>
+                                            </Card.Header>
 
-                                        <Card.Body>
-                                            <Table responsive hover>
-                                                <thead>
-                                                    <tr>
-                                                        <th>#</th>
-                                                        <th>Prénom</th>
-                                                        <th>Nom</th>
-                                                        <th>Téléphone</th>
-                                                        <th>Siége</th>
-                                                        <th>Date</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody style={{ cursor: "pointer" }}>
-                                                    {NegatifPatients}
-                                                </tbody>
-                                            </Table>
-                                        </Card.Body>
-                                    </Card>
+                                            <Card.Body>
+                                                <Table responsive hover>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Prénom</th>
+                                                            <th>Nom</th>
+                                                            <th>Téléphone</th>
+                                                            <th>Siége</th>
+                                                            <th>Date</th>
+                                                            <th>Sexe</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody style={{ cursor: "pointer" }}>
+                                                        {NegatifPatients}
+                                                    </tbody>
+                                                </Table>
+                                            </Card.Body>
+                                        </Card> :
+                                        <Card>
+                                            <Card.Header>
+                                                <Card.Title as="h5">Aucun malade n'est testé Negatif</Card.Title>
+                                            </Card.Header>
+                                        </Card> :
+                                        <Spinner animation="border" role="status">
+                                            <span className="sr-only">Loading...</span>
+                                        </Spinner>
+                                    }
                                 </Tab>
                                 <Tab eventKey="gueris" title="Cas guéris">
-                                    <Card>
-                                        <Card.Header>
-                                            <Card.Title as="h5">Liste des cas guérris</Card.Title>
-                                            <span className="d-block m-t-5">use props <code>hover</code> with <code>Table</code> component</span>
-                                        </Card.Header>
+                                {
+                                        this.state.loading>=4 ? this.state.healdCases.length>0 ? 
+                                        <Card>
+                                            <Card.Header>
+                                                <Card.Title as="h5">Liste des cas Gueries</Card.Title>
+                                            </Card.Header>
 
-                                        <Card.Body>
-                                            <Table responsive hover>
-                                                <thead>
-                                                    <tr>
-                                                        <th>#</th>
-                                                        <th>Prénom</th>
-                                                        <th>Nom</th>
-                                                        <th>Téléphone</th>
-                                                        <th>Siége</th>
-                                                        <th>Date</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody style={{ cursor: "pointer" }}>
-                                                    {healdPatients}
-                                                </tbody>
-                                            </Table>
-                                        </Card.Body>
-                                    </Card>
+                                            <Card.Body>
+                                                <Table responsive hover>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Prénom</th>
+                                                            <th>Nom</th>
+                                                            <th>Téléphone</th>
+                                                            <th>Siége</th>
+                                                            <th>Date</th>
+                                                            <th>Sexe</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody style={{ cursor: "pointer" }}>
+                                                        {healdPatients}
+                                                    </tbody>
+                                                </Table>
+                                            </Card.Body>
+                                        </Card> :
+                                        <Card>
+                                            <Card.Header>
+                                                <Card.Title as="h5">Aucun malade n'est Gueri</Card.Title>
+                                            </Card.Header>
+                                        </Card> :
+                                        <Spinner animation="border" role="status">
+                                            <span className="sr-only">Loading...</span>
+                                        </Spinner>
+                                    }
                                 </Tab>
                             </Tabs>
                         </Col>
