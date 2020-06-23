@@ -9,6 +9,7 @@ import Aux from "../hoc/_Aux";
 import ScrollToTop from './layout/ScrollToTop';
 import routes from "../route";
 import SignIn from '../Demo/Authentication/SignIn/SignIn1';
+import { withCookies } from 'react-cookie';
 
 const AdminLayout = Loadable({
     loader: () => import('./layout/AdminLayout'),
@@ -59,7 +60,7 @@ class App extends Component {
                                 </Spinner>  :
                                 this.state.logged? 
                                 <Route path="/" component={AdminLayout} /> : 
-                                <SignIn VerifyAuth={this.f.bind(this)}></SignIn>
+                                <SignIn setLogged={this.setLogged.bind(this)}></SignIn>
                             }
                             
                         </Switch>
@@ -69,4 +70,4 @@ class App extends Component {
         );
     }
 }
-export default App;
+export default withCookies(App);
