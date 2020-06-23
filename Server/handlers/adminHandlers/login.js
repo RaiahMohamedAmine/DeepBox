@@ -22,9 +22,9 @@ async function Login (req,res){
         }
         else{
            // const bodyPass = crypto.pbkdf2Sync (req.body.pass,MDPHASH,10,100,'sha512').toString();
-            if (req.body.pass== results[0].pass)
+            if (results[0] && req.body.pass== results[0].pass)
             {
-                jsw.sign(req.body,JSW,{expiresIn:60}, (error,token)=>{
+                jsw.sign(req.body,JSW, (error,token)=>{
                     if (error)
                     {
                         res.status(500).json({
@@ -35,18 +35,19 @@ async function Login (req,res){
                     else{
                         res.status(200).cookie('jwt',token).json({
                             type :"Info",
-                            message :"Connection Succed !"
-                        });
-                    }
-                });
+                                message :"Connection Succed !",
+                                token
+                            });
+                        }
+                    });
             }
-            else{
-                res.status(500).json({
-                    type :"Err",
-                    message :"Wrong Credantials !",
-                });
-            }
-            
+                else{
+                    res.status(200).json({
+                        type :"Err",
+                        message :"Wrong Credantials !",
+                    });
+                }
+           
         }
     });
 }
