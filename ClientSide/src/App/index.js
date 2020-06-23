@@ -9,6 +9,7 @@ import Aux from "../hoc/_Aux";
 import ScrollToTop from './layout/ScrollToTop';
 import routes from "../route";
 import SignIn from '../Demo/Authentication/SignIn/SignIn1';
+import axios from 'axios';
 import { withCookies } from 'react-cookie';
 
 const AdminLayout = Loadable({
@@ -22,11 +23,37 @@ class App extends Component {
         logged : false
     };
     componentDidMount(){
-        this.setState({
-            loading:false
-        });
+        const {cookies} = this.props ;
+        if (cookies.get('jwt'))
+        {
+            axios({
+                method:"POST",
+                url:"http://localhost:5200/admin/verifyAuth",
+                headers:{
+                    authorization: "Bearer "+cookies.get('jwt')
+                }
+            }).then((res) => {   
+                if (res.data.type==='Err'){
+                    this.setState({
+                        loading:false
+                    });
+                }
+                else{
+                    this.setState({
+                        loading:false,
+                        logged:true
+                    });
+                }
+            });
+        }
+        else
+        {
+            this.setState({
+                loading:false
+            });
+        }
     }
-    f = ()=>{
+    setLogged = ()=>{
         this.setState({
             logged:true
         }, ()=>{
