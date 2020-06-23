@@ -24,11 +24,11 @@ class FormsElements extends React.Component {
     }
     disableButton() {
         this.setState({ canSubmit: false });
-      }
-    
-      enableButton() {
+    }
+
+    enableButton() {
         this.setState({ canSubmit: true });
-      }
+    }
 
     addPatient() {
         var today = new Date();
@@ -93,7 +93,7 @@ class FormsElements extends React.Component {
                                         </Col>
                                         <Col xs={6}>
                                             <FormGroup>
-                                            <h6>Prénom</h6>
+                                                <h6>Prénom</h6>
                                                 <Input
                                                     placeholder="Prénom"
                                                     type="text"
@@ -112,7 +112,7 @@ class FormsElements extends React.Component {
                                     <Row>
                                         <Col xs={6}>
                                             <FormGroup>
-                                            <h6>Date de naissance</h6>
+                                                <h6>Date de naissance</h6>
                                                 <Input
                                                     placeholder="dd-mm-yyyy"
                                                     type="date"
@@ -141,104 +141,93 @@ class FormsElements extends React.Component {
                                                     }}
                                                 />
                                             </FormGroup>
-                                    </Col>
-                                    <Col md={6}>
-                                        <FormGroup>
-                                            <h6>Adresse</h6>
-                                            <Input
-                                                placeholder="Adresse"
-                                                type="text"
-                                                required
-                                                pattern="[A-Za-z, ]*"
-                                                title="Lettres uniquement !"
-                                                onChange={(e) => {
-                                                    var { patientData } = this.state
-                                                    patientData.adresse = e.target.value
-                                                    this.setState({ patientData })
-                                                }}
-                                            />
-                                            </FormGroup>
                                         </Col>
-                                    </Row>
-                                    <Row >
-                                        <Col xs={6}>
+                                        <Col md={6}>
                                             <FormGroup>
-                                            <h6>Siége</h6>
-                                            <Input
-                                                placeholder="Etablissement hospitalier"
-                                                type="text"
-                                                required
-                                                pattern="[A-Za-z, ]*"
-                                                title="Lettres uniquement !"
-                                                onChange={(e) => {
-                                                    var { patientData } = this.state
-                                                    patientData.siege = e.target.value
-                                                    this.setState({ patientData })
-                                                }}
-                                            />
-                                            </FormGroup>
-                                        </Col>
-                                        <Col xs={6}>
-                                            <FormGroup>
-                                            <h6>Téléphone</h6>
-                                                <PhoneInput
-                                                    country={'dz'}
-                                                    value={this.state.patientData.id}
-                                                    onChange={phone => {
+                                                <h6>Adresse</h6>
+                                                <Input
+                                                    placeholder="Adresse"
+                                                    type="text"
+                                                    required
+                                                    pattern="[A-Za-z, ]*"
+                                                    title="Lettres uniquement !"
+                                                    onChange={(e) => {
                                                         var { patientData } = this.state
-                                                        patientData.tel = phone
+                                                        patientData.adresse = e.target.value
                                                         this.setState({ patientData })
                                                     }}
                                                 />
                                             </FormGroup>
                                         </Col>
+                                        <Col xs={6}>
+                                            <FormGroup>
+                                                <h6>Sexe</h6>
+                                                <Input
+                                                    type="select"
+                                                    onChange={(e) => {
+                                                        var { patientData } = this.state
+                                                        patientData.sexe = e.target.value
+                                                        this.setState({ patientData })
+                                                    }}
+                                                >
+                                                    <option value="Homme">Homme</option>
+                                                    <option value="Femme">Femme</option>
+                                                </Input>
+                                            </FormGroup>
+                                        </Col>
+
+                                    </Row>
+                                    <Row >
+                                        <Col xs={6}>
+                                            <FormGroup>
+                                                <h6>Siége</h6>
+                                                <Input
+                                                    placeholder="Etablissement hospitalier"
+                                                    type="text"
+                                                    required
+                                                    pattern="[A-Za-z, ]*"
+                                                    title="Lettres uniquement !"
+                                                    onChange={(e) => {
+                                                        var { patientData } = this.state
+                                                        patientData.siege = e.target.value
+                                                        this.setState({ patientData })
+                                                    }}
+                                                />
+                                            </FormGroup>
+                                        </Col>
+                                        <Col xs={6}>
+                                            <FormGroup>
+                                                <h6>État</h6>
+                                                <Input
+                                                    type="select"
+                                                    onChange={(e) => {
+                                                        var { patientData } = this.state
+                                                        patientData.etat = e.target.value
+                                                        this.setState({ patientData })
+                                                    }}
+                                                >
+                                                    <option value="Suspect">Suspect</option>
+                                                    <option value="Positif">Positif</option>
+                                                    <option value="Negatif">Négatif</option>
+                                                    <option value="Gueri">Guéri</option>
+                                                </Input>
+                                            </FormGroup>
+                                        </Col>
+
+
                                     </Row>
                                     <Row>
-                                        <Col xs={6}>
-                                        <h6>État</h6>
-                                        <FormGroup>
-                                            <h6>État</h6>
-                                            <Input
-                                                type="select"
-                                                onChange={(e) => {
-                                                    var { patientData } = this.state
-                                                    patientData.etat = e.target.value
-                                                    this.setState({ patientData })
-                                                }}
-                                            >
-                                                <option value="Suspect">Suspect</option>
-                                                <option value="Positif">Positif</option>
-                                                <option value="Negatif">Négatif</option>
-                                                <option value="Gueri">Guéri</option>
-                                            </Input>
-                                        </FormGroup>
-                                        </Col>
-                                        {/** 
-                                        <FormGroup>
-                                            <h6>Sexe</h6>
-                                            <Input
-                                                type="select"
-                                                onChange={(e) => {
-                                                    var { patientData } = this.state
-                                                    patientData.sexe = e.target.value
-                                                    this.setState({ patientData })
-                                                }}
-                                            >
-                                                <option value="Homme">Homme</option>
-                                                <option value="Femme">Femme</option>
-                                            </Input>
-                                        </Col>
-                                        */}
+
                                         <Col xs={6}>
                                             <br />
                                             <FormGroup>
                                                 <Button color="warning" className="btn-round" type="submit">Ajouter !</Button>
                                             </FormGroup>
                                         </Col>
-                                        
+
                                     </Row>
                                 </Formsy>
-                                                                {/** 
+                                {/** 
                                 <h5 className="mt-5">Sizing</h5>
                                 <hr />
                                 <Row>
