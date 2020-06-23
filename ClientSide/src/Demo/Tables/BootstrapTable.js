@@ -15,12 +15,12 @@ class BootstrapTable extends React.Component {
         patientData: {
             nom: "",
             prenom: "",
-            tel: "",
             adresse: "",
             siege: "",
             dateAjout: "",
             dateNaissance: "",
             etat: "",
+            tel:""
         },
         patientModal: false
     }
@@ -46,7 +46,7 @@ class BootstrapTable extends React.Component {
         })
         axios.get('http://localhost:5200/malade/get/Négatif').then((response) => {
             this.setState({
-                NegatifCases: response.data.malades
+                negatifCases: response.data.malades
             }, () => {
                 console.log(this.state.negatifCases)
             })
@@ -75,7 +75,7 @@ class BootstrapTable extends React.Component {
                 siege: data.siege,
                 adresse: data.adresse,
                 etat: data.etat,
-                tel: "0" + data.id,
+                tel: "0" + data.tel,
                 dateAjout: data.dateAjout,
                 dateNaissance: data.dateNaissance
             },
