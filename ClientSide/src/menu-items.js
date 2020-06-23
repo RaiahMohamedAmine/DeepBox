@@ -29,7 +29,7 @@ export default {
                 }
             ]
         },
-        {
+        /*{
             id: 'ui-element',
             title: 'UI ELEMENT',
             type: 'group',
@@ -80,7 +80,7 @@ export default {
                     ]
                 }
             ]
-        },
+        },*/
         /*{
             id: 'ui-forms',
             title: 'Forms & Tables',
@@ -103,7 +103,7 @@ export default {
                 }
             ]
         },*/
-        {
+        /*{
             id: 'chart-maps',
             title: 'Chart & Maps',
             type: 'group',
@@ -124,8 +124,8 @@ export default {
                     url: '/maps/google-map'
                 }
             ]
-        },
-        {
+        },*/
+        /*{
             id: 'pages',
             title: 'Pages',
             type: 'group',
@@ -243,8 +243,8 @@ export default {
                         title: 'v1.0',
                         type: 'label-primary'
                     }
-                }*/
+                }
             ]
-        }
+        }*/
     ]
 }

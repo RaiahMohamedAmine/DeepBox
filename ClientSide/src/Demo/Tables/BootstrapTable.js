@@ -15,12 +15,12 @@ class BootstrapTable extends React.Component {
         patientData: {
             nom: "",
             prenom: "",
-            tel: "",
             adresse: "",
             siege: "",
             dateAjout: "",
             dateNaissance: "",
             etat: "",
+            tel:"",
             sexe:''
         },
         loading :0,
@@ -81,6 +81,7 @@ class BootstrapTable extends React.Component {
                 siege: data.siege,
                 adresse: data.adresse,
                 etat: data.etat,
+                tel: "0" + data.tel,
                 tel: data.tel,
                 dateAjout: data.dateAjout,
                 dateNaissance: data.dateNaissance,
