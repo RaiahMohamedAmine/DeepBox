@@ -6,10 +6,29 @@ import {NavLink} from 'react-router-dom';
 import './../../../assets/scss/style.scss';
 import Aux from "../../../hoc/_Aux";
 import Breadcrumb from "../../../App/layout/AdminLayout/Breadcrumb";
+import axios from 'axios';
 import { withCookies } from 'react-cookie';
 
 class SignUp1 extends React.Component {
     onClick () {
+        const {username,pass}= this.refs;
+        axios({
+            method:"POST",
+            url:"http://localhost:5200/admin/login",
+            data: {
+                username :username.value,
+                pass :pass.value
+            }
+        }).then((res) => {
+            if (res.data.type==='Err'){
+                alert(res.data.message);
+            }
+            else{
+                const {cookies} = this.props;
+                cookies.set('jwt',res.data.token);
+                this.props.setLogged();
+            }
+        })
     }
     render () {
         return(
