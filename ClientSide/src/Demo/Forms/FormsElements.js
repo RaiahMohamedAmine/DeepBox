@@ -2,6 +2,7 @@ import React from 'react';
 import { Row, Col, Card, Form, Button } from 'react-bootstrap';
 import { Input, FormGroup } from 'reactstrap'
 import axios from 'axios'
+import Formsy from 'formsy-react'
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import Aux from "../../hoc/_Aux";
@@ -18,7 +19,15 @@ class FormsElements extends React.Component {
             etat: "",
             tel: "",
         },
+        canSubmit: false
     }
+    disableButton() {
+        this.setState({ canSubmit: false });
+      }
+    
+      enableButton() {
+        this.setState({ canSubmit: true });
+      }
 
     addPatient() {
         var today = new Date();
@@ -31,7 +40,7 @@ class FormsElements extends React.Component {
         if (mm < 10) {
             mm = '0' + mm;
         }
-        today = mm + '-' + dd + '-' + yyyy;
+        today = yyyy + '-' + mm + '-' + dd;
         var phone = this.state.patientData.tel.slice(3)
         var { patientData } = this.state
         patientData.dateAjout = today
@@ -60,9 +69,11 @@ class FormsElements extends React.Component {
                                 établissement.
                                 </h5>
                                 <hr />
-                                <Row>
-                                    <Col md={6}>
-                                        <Form>
+                                <Formsy onValidSubmit={this.addPatient.bind(this)}
+                                    onValid={this.enableButton.bind(this)}
+                                    onInvalid={this.disableButton.bind(this)}>
+                                    <Row >
+                                        <Col xs={6}>
                                             <FormGroup>
                                                 <h6>Nom</h6>
                                                 <Input
@@ -78,8 +89,10 @@ class FormsElements extends React.Component {
                                                     }}
                                                 />
                                             </FormGroup>
+                                        </Col>
+                                        <Col xs={6}>
                                             <FormGroup>
-                                                <h6>Prénom</h6>
+                                            <h6>Prénom</h6>
                                                 <Input
                                                     placeholder="Prénom"
                                                     type="text"
@@ -93,14 +106,17 @@ class FormsElements extends React.Component {
                                                     }}
                                                 />
                                             </FormGroup>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col xs={6}>
                                             <FormGroup>
-                                                <h6>Date de naissance</h6>
+                                            <h6>Date de naissance</h6>
                                                 <Input
                                                     placeholder="dd-mm-yyyy"
                                                     type="date"
                                                     min="01-01-1900" max="31-12-2030"
                                                     required
-                                                    min="01-01-1997" max="12-31-2030"
                                                     pattern="^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$"
                                                     title="Veuillez suivre le format correct !"
                                                     onChange={(e) => {
@@ -110,23 +126,9 @@ class FormsElements extends React.Component {
                                                     }}
                                                 />
                                             </FormGroup>
+                                        </Col>
+                                        <Col xs={6}>
                                             <FormGroup>
-                                                <h6>Téléphone</h6>
-                                                <PhoneInput
-                                                    country={'dz'}
-                                                    value={this.state.patientData.id}
-                                                    onChange={phone => {
-                                                        var { patientData } = this.state
-                                                        patientData.tel = phone
-                                                        this.setState({ patientData })
-                                                    }}
-                                                />
-                                            </FormGroup>
-
-                                        </Form>
-                                    </Col>
-                                    <Col md={6}>
-                                        <FormGroup>
                                             <h6>Adresse</h6>
                                             <Input
                                                 placeholder="Adresse"
@@ -140,8 +142,12 @@ class FormsElements extends React.Component {
                                                     this.setState({ patientData })
                                                 }}
                                             />
-                                        </FormGroup>
-                                        <FormGroup>
+                                            </FormGroup>
+                                        </Col>
+                                    </Row>
+                                    <Row >
+                                        <Col xs={6}>
+                                            <FormGroup>
                                             <h6>Siége</h6>
                                             <Input
                                                 placeholder="Etablissement hospitalier"
@@ -155,9 +161,26 @@ class FormsElements extends React.Component {
                                                     this.setState({ patientData })
                                                 }}
                                             />
-                                        </FormGroup>
-                                        <FormGroup controlId="exampleForm.ControlSelect1">
-                                            <h6>État</h6>
+                                            </FormGroup>
+                                        </Col>
+                                        <Col xs={6}>
+                                            <FormGroup>
+                                            <h6>Téléphone</h6>
+                                                <PhoneInput
+                                                    country={'dz'}
+                                                    value={this.state.patientData.id}
+                                                    onChange={phone => {
+                                                        var { patientData } = this.state
+                                                        patientData.tel = phone
+                                                        this.setState({ patientData })
+                                                    }}
+                                                />
+                                            </FormGroup>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col xs={6}>
+                                        <h6>État</h6>
                                             <Input
                                                 type="select"
                                                 onChange={(e) => {
@@ -171,33 +194,16 @@ class FormsElements extends React.Component {
                                                 <option value="Négatif">Négatif</option>
                                                 <option value="Guéris">Guéri</option>
                                             </Input>
-                                        </FormGroup>
-                                        <br />
-                                        <FormGroup>
-                                            <Button variant="primary" onClick={this.addPatient.bind(this)}>
-                                                Ajouter
-                                        </Button>
-                                        </FormGroup>
-
-                                        {/* 
-                                        <Form.Group controlId="exampleForm.ControlSelect1">
-                                            <Form.Label>Example select</Form.Label>
-                                            <Form.Control as="select">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                            </Form.Control>
-                                        </Form.Group>
-                                        <Form.Group controlId="exampleForm.ControlTextarea1">
-                                            <Form.Label>Example textarea</Form.Label>
-                                            <Form.Control as="textarea" rows="3" />
-                                        </Form.Group>
-                                        */}
-                                    </Col>
-                                </Row>
-                                {/** 
+                                        </Col>
+                                        <Col xs={6}>
+                                            <br />
+                                            <FormGroup>
+                                                <Button color="warning" className="btn-round" type="submit">Ajouter !</Button>
+                                            </FormGroup>
+                                        </Col>
+                                    </Row>
+                                </Formsy>
+                                                                {/** 
                                 <h5 className="mt-5">Sizing</h5>
                                 <hr />
                                 <Row>
