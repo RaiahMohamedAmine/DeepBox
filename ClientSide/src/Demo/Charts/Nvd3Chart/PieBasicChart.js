@@ -61,7 +61,7 @@ class PieBasicChart extends React.Component {
     render() {
         return (
             this.state.loading >= 4 ?
-                <NVD3Chart id="chart" height={300} type="pieChart" datum={datum} x="key" y="y" />
+                <NVD3Chart id="chart" height={300} type="pieChart" datum={datum} x="key" y="y" labelType='percent'/>
              :
         <Spinner animation="border" role="status">
             <span className="sr-only">Loading...</span>
