@@ -1,18 +1,20 @@
 import React from 'react';
+import axios from 'axios'
+import { Spinner } from 'react-bootstrap'
 import NVD3Chart from 'react-nvd3';
 
-const datum = [
+var datum = [
     {
         key: "Cumulative Return",
         values: [{
-            "label": "A",
-            "value": -29.765957771107,
+            "label": "Hommes",
+            "value": 0,
+            "color": "#4C5667"
+        }, {
+            "label": "Femmes",
+            "value": 0,
             "color": "#3ebfea"
-        }, {
-            "label": "B",
-            "value": 10,
-            "color": "#04a9f5"
-        }, {
+        },/* {
             "label": "C",
             "value": 32.807804682612,
             "color": "#ff8a65"
@@ -36,14 +38,45 @@ const datum = [
             "label": "H",
             "value": -5.1387322875705,
             "color": "#FE8A7D"
-        }]
+        }*/]
     }
 ];
 
 class BarDiscreteChart extends React.Component {
+    state = {
+        malades: [],
+        loading: 0,
+    }
 
+    componentWillMount() {
+        this.refreshMalades()
+    }
+
+    refreshMalades() {
+        axios.get('http://localhost:5200/malade/get').then((response) => {
+            this.setState({
+                malades: response.data.malades,
+                loading: this.state.loading + 1
+            }, () => {
+                var malade
+                for (malade of this.state.malades) {
+                    malade.sexe == "Homme" ?
+                        datum[0].values[0].value++
+                        : datum[0].values[1].value++
+                }
+            })
+        })
+    }
     render() {
-        return <NVD3Chart tooltip={{enabled: true}} type="discreteBarChart" datum={datum} x="label" y="value" height={300} showValues />
+        return (
+            this.state.loading >= 1 ?
+                <NVD3Chart tooltip={{ enabled: true }} type="discreteBarChart" datum={datum} x="label" y="value" height={300} showValues />
+                :
+                <Spinner animation="border" role="status">
+                    <span className="sr-only">Loading...</span>
+                </Spinner>
+
+        )
     }
 }
 

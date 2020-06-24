@@ -5,6 +5,7 @@ import Aux from "../../hoc/_Aux";
 import DEMO from "../../store/constant";
 
 import PieBasicChart from "../Charts/Nvd3Chart/PieBasicChart";
+import BarDiscreteChart from "../Charts/Nvd3Chart/BarDiscreteChart";
 
 import avatar1 from '../../assets/images/user/avatar-1.jpg';
 import avatar2 from '../../assets/images/user/avatar-2.jpg';
@@ -77,10 +78,20 @@ class Dashboard extends React.Component {
                     <Col md={6}>
                         <Card>
                             <Card.Header>
-                                <Card.Title as="h5">Répartition des cas</Card.Title>
+                                <Card.Title as="h5">Répartition des cas par gravité</Card.Title>
                             </Card.Header>
                             <Card.Body>
                                 <PieBasicChart />
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                    <Col md={6}>
+                        <Card>
+                            <Card.Header>
+                                <Card.Title as="h5">Répartition des cas par sexe</Card.Title>
+                            </Card.Header>
+                            <Card.Body>
+                                <BarDiscreteChart/>
                             </Card.Body>
                         </Card>
                     </Col>
