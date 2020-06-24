@@ -6,5 +6,6 @@ const GetStatistics = require('./statistics');
 module.exports ={
     AddMalade,
     GetMalades,
-    GetMaladesEtat
+    GetMaladesEtat,
+    GetStatistics
 };
