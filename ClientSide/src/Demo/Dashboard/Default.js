@@ -14,6 +14,7 @@ import avatar3 from '../../assets/images/user/avatar-3.jpg';
 
 class Dashboard extends React.Component {
     state = {
+        malades: [],
         suspects: [],
         positifCases: [],
         negatifCases: [],
@@ -26,41 +27,73 @@ class Dashboard extends React.Component {
     }
 
     refreshMalades() {
+        axios.get('http://localhost:5200/malade/get').then((response) => {
+            this.setState({
+                malades: response.data.malades,
+            })
+        })
         axios.get('http://localhost:5200/malade/get/Suspect').then((response) => {
             this.setState({
                 suspects: response.data.malades,
                 loading: this.state.loading + 1
-            }, () => {
-                console.log(this.state.suspects)
             })
         })
         axios.get('http://localhost:5200/malade/get/Positif').then((response) => {
             this.setState({
                 positifCases: response.data.malades,
                 loading: this.state.loading + 1
-            }, () => {
-                console.log(this.state.positifCases)
             })
         })
         axios.get('http://localhost:5200/malade/get/Negatif').then((response) => {
             this.setState({
                 negatifCases: response.data.malades,
                 loading: this.state.loading + 1
-            }, () => {
-                console.log(this.state.negatifCases)
             })
         })
         axios.get('http://localhost:5200/malade/get/Gueri').then((response) => {
             this.setState({
                 healdCases: response.data.malades,
                 loading: this.state.loading + 1
-            }, () => {
-                console.log(this.state.healdCases)
             })
         })
     }
 
     render() {
+        let CasesSameDay = this.state.malades.map((malade, index) => {
+            let date = malade.dateAjout
+            let today = new Date()
+            console.log("User : " + index + " Date user month : " + date.slice(8))
+            console.log(today.getDay())
+            if (parseInt(date.slice(0,4)) == today.getFullYear()) {
+                if (parseInt(date.slice(5,7)) == today.getMonth() + 1) {
+                    if (parseInt(date.slice(8)) == parseInt(today.getDate())) {
+                        if (malade.etat == "Positif" || malade.etat == "Négatif") {
+                            return (
+                                <div key={index} className="media friendlist-box align-items-center justify-content-center m-b-20">
+                                <div className="m-r-10 photo-table">
+                                    {malade.sexe == "Homme" ? 
+                                    <a href={DEMO.BLANK_LINK}><img className="rounded-circle" style={{ width: '40px' }} src={avatar2} alt="activity-user" /></a>
+                                    :
+                                    <a href={DEMO.BLANK_LINK}><img className="rounded-circle" style={{ width: '40px' }} src={avatar1} alt="activity-user" /></a>
+                                    }
+                                    
+                                </div>
+                                <div className="media-body">
+                                    <h6 className="m-0 d-inline">{malade.nom + " " + malade.prenom}</h6>
+                                    {malade.etat == "Positif" ?
+                                    <span className="float-right d-flex  align-items-center"><i className="fa fa-plus f-22 m-r-10 text-c-red" /><b>Positif</b></span>
+                                    :
+                                    <span className="float-right d-flex  align-items-center"><i className="fa fa-minus f-22 m-r-10 text-c-green" /><b>Négatif</b></span>
+                                    }
+                                </div>
+                            </div>
+                            )
+                        }
+                    }
+                }
+            }
+        })
+
         const tabContent = (
             <Aux>
                 <div className="media friendlist-box align-items-center justify-content-center m-b-20">
@@ -146,67 +179,10 @@ class Dashboard extends React.Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col md={6} xl={4}>
-                        <Card>
-                            <Card.Body>
-                                <h6 className='mb-4'>Daily Sales</h6>
-                                <div className="row d-flex align-items-center">
-                                    <div className="col-9">
-                                        <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="feather icon-arrow-up text-c-green f-30 m-r-5" /> $249.95</h3>
-                                    </div>
-
-                                    <div className="col-3 text-right">
-                                        <p className="m-b-0">50%</p>
-                                    </div>
-                                </div>
-                                <div className="progress m-t-30" style={{ height: '7px' }}>
-                                    <div className="progress-bar progress-c-theme" role="progressbar" style={{ width: '50%' }} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" />
-                                </div>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                    <Col md={6} xl={4}>
-                        <Card>
-                            <Card.Body>
-                                <h6 className='mb-4'>Monthly Sales</h6>
-                                <div className="row d-flex align-items-center">
-                                    <div className="col-9">
-                                        <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="feather icon-arrow-down text-c-red f-30 m-r-5" /> $2.942.32</h3>
-                                    </div>
-
-                                    <div className="col-3 text-right">
-                                        <p className="m-b-0">36%</p>
-                                    </div>
-                                </div>
-                                <div className="progress m-t-30" style={{ height: '7px' }}>
-                                    <div className="progress-bar progress-c-theme2" role="progressbar" style={{ width: '35%' }} aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" />
-                                </div>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                    <Col xl={4}>
-                        <Card>
-                            <Card.Body>
-                                <h6 className='mb-4'>Yearly Sales</h6>
-                                <div className="row d-flex align-items-center">
-                                    <div className="col-9">
-                                        <h3 className="f-w-300 d-flex align-items-center m-b-0"><i className="feather icon-arrow-up text-c-green f-30 m-r-5" /> $8.638.32</h3>
-                                    </div>
-
-                                    <div className="col-3 text-right">
-                                        <p className="m-b-0">70%</p>
-                                    </div>
-                                </div>
-                                <div className="progress m-t-30" style={{ height: '7px' }}>
-                                    <div className="progress-bar progress-c-theme" role="progressbar" style={{ width: '70%' }} aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" />
-                                </div>
-                            </Card.Body>
-                        </Card>
-                    </Col>
                     <Col md={6} xl={8} className='m-b-30'>
                         <Tabs defaultActiveKey="today" id="uncontrolled-tab-example">
                             <Tab eventKey="today" title="Today">
-                                {tabContent}
+                                {CasesSameDay}
                             </Tab>
                             <Tab eventKey="week" title="This Week">
                                 {tabContent}
