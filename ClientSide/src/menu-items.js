@@ -103,7 +103,7 @@ export default {
                 }
             ]
         },*/
-        {
+        /*{
             id: 'chart-maps',
             title: 'Chart & Maps',
             type: 'group',
@@ -122,7 +122,7 @@ export default {
                     type: 'item',
                     icon: 'feather icon-map',
                     url: '/maps/google-map'
-                }*/
+                }
             ]
         },
         /*{
