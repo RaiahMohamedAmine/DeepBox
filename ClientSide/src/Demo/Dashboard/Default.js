@@ -287,6 +287,18 @@ class Dashboard extends React.Component {
                         </Col>
 
                     </Row>
+                    <Row>
+                    <Col md={16}>
+                            <Card>
+                                <Card.Header>
+                                    <Card.Title as="h5">Repartitions age</Card.Title>
+                                </Card.Header>
+                                <Card.Body>
+                                    <AgeChart/>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>
                 </Aux>
             </>
         );
