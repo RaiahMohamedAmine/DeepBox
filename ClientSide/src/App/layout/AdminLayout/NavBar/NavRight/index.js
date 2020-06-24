@@ -8,12 +8,16 @@ import DEMO from "../../../../../store/constant";
 import Avatar1 from '../../../../../assets/images/user/avatar-1.jpg';
 import Avatar2 from '../../../../../assets/images/user/avatar-2.jpg';
 import Avatar3 from '../../../../../assets/images/user/avatar-3.jpg';
+import { withCookies,Cookies } from "react-cookie";
 
 class NavRight extends Component {
     state = {
         listOpen: false
     };
-
+    logout (){
+        const {cookies} = this.props;
+        cookies.remove('jwt');
+    }
     render() {
 
         return (
@@ -88,7 +92,7 @@ class NavRight extends Component {
                                 <div className="pro-head">
                                     <img src={Avatar1} className="img-radius" alt="User Profile"/>
                                     <span>John Doe</span>
-                                    <a href={DEMO.BLANK_LINK} className="dud-logout" title="Logout">
+                                    <a href={DEMO.BLANK_LINK} className="dud-logout" title="Logout" onClick={this.logout.bind(this)}>
                                         <i className="feather icon-log-out"/>
                                     </a>
                                 </div>
@@ -108,4 +112,4 @@ class NavRight extends Component {
     }
 }
 
-export default NavRight;
+export default withCookies(NavRight);
