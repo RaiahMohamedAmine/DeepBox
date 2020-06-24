@@ -6,6 +6,8 @@ import moment from 'moment'
 import Aux from "../../hoc/_Aux";
 import DEMO from "../../store/constant";
 
+import BarDiscreteChart from '../Charts/Nvd3Chart/BarDiscreteChart';
+import PieBasicChart from '../Charts/Nvd3Chart/PieBasicChart';
 
 import avatar1 from '../../assets/images/user/avatar-1.jpg';
 import avatar2 from '../../assets/images/user/avatar-2.jpg';
@@ -54,6 +56,9 @@ class Dashboard extends React.Component {
                 healdCases: response.data.malades,
                 loading: this.state.loading + 1
             })
+        })
+        axios.get('http://localhost:5200/malade/statistics').then((response) => {
+            console.log (response);
         })
     }
 
@@ -200,6 +205,7 @@ class Dashboard extends React.Component {
                                     <Card.Title as="h5">Répartition des cas par gravité</Card.Title>
                                 </Card.Header>
                                 <Card.Body>
+                                    <PieBasicChart/>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -209,6 +215,7 @@ class Dashboard extends React.Component {
                                     <Card.Title as="h5">Répartition des cas par sexe</Card.Title>
                                 </Card.Header>
                                 <Card.Body>
+                                    <BarDiscreteChart/>
                                 </Card.Body>
                             </Card>
                         </Col>

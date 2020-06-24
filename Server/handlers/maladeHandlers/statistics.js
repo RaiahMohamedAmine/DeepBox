@@ -27,7 +27,7 @@ async function GetStatistics (req,res){
             return;
         }
         if(results){
-            resluts.forEach(malade => {
+            results.forEach(malade => {
                 Stats.Sexe[malade.sexe]++;
                 const age =calculateAge (malade.dateNaissance);
                 const indice = age/10 >>0; 
