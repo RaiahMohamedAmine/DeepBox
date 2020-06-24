@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Card, Table, Tabs, Tab,Spinner } from 'react-bootstrap';
+import { Row, Col, Card, Table, Tabs, Tab, Spinner } from 'react-bootstrap';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 import axios from 'axios'
 
@@ -28,10 +28,10 @@ class BootstrapTable extends React.Component {
     }
 
     componentWillMount() {
-        this.refreshMembers()
+        this.refreshMalades()
     }
 
-    refreshMembers() {
+    refreshMalades() {
         axios.get('http://localhost:5200/malade/get/Suspect').then((response) => {
             this.setState({
                 suspects: response.data.malades,
