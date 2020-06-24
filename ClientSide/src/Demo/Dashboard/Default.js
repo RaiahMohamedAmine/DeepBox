@@ -236,7 +236,7 @@ class Dashboard extends React.Component {
                                                     </div>
                                                     <div className="col">
                                                         <h3 className="f-w-300">{this.state.healdCases.length}</h3>
-                                                        <span className="d-block text-uppercase">Nombre de géris</span>
+                                                        <span className="d-block text-uppercase">Nombre de guérisons</span>
                                                     </div>
                                                 </div>
                                             </Card.Body>
@@ -247,7 +247,7 @@ class Dashboard extends React.Component {
                                                     </div>
                                                     <div className="col">
                                                         <h3 className="f-w-300">{this.state.suspects.length}</h3>
-                                                        <span className="d-block text-uppercase">Nombre de suspects</span>
+                                                        <span className="d-block text-uppercase">Nombre de cas suspects</span>
                                                     </div>
                                                 </div>
                                             </Card.Body>
