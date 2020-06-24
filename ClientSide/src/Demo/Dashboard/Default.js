@@ -8,6 +8,7 @@ import DEMO from "../../store/constant";
 
 import BarDiscreteChart from '../Charts/Nvd3Chart/BarDiscreteChart';
 import PieBasicChart from '../Charts/Nvd3Chart/PieBasicChart';
+import AgeChart from '../Charts/Nvd3Chart/AgeChart';
 
 import avatar1 from '../../assets/images/user/avatar-1.jpg';
 import avatar2 from '../../assets/images/user/avatar-2.jpg';
@@ -56,9 +57,6 @@ class Dashboard extends React.Component {
                 healdCases: response.data.malades,
                 loading: this.state.loading + 1
             })
-        })
-        axios.get('http://localhost:5200/malade/statistics').then((response) => {
-            console.log (response);
         })
     }
 
@@ -109,7 +107,7 @@ class Dashboard extends React.Component {
                 mm = '0' + mm;
             }
             today = yyyy + '-' + mm + '-' + dd;
-            console.log("Date : " + date + " Today : " + today)
+            //console.log("Date : " + date + " Today : " + today)
             if (moment(date).isSame((today), 'week')) {
                 if (malade.etat == "Positif" || malade.etat == "Négatif") {
                     return (

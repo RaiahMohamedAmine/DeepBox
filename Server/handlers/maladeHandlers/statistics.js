@@ -6,17 +6,40 @@ async function GetStatistics (req,res){
             Homme :0,
             Femme:0
         },
-        Age :{
-            '0 à 10':0,
-            '11 à 20':0,
-            '21 à 30':0,
-            '31 à 40':0,
-            '41 à 50':0,
-            '51 à 60':0,
-            '61 à 70':0,
-            '71 à 80':0,
-            '81 à 90':0,
-        }
+        Age :[
+            {
+                label :'0 à 10' ,
+                value: 0
+            } ,
+            {
+                label :'11 à 20' ,
+                value: 0
+            } ,
+            {
+                label :'21 à 30' ,
+                value: 0
+            } ,
+            {
+                label :'31 à 40' ,
+                value: 0
+            } ,
+            {
+                label :'41 à 50' ,
+                value: 0
+            } ,
+            {
+                label :'51 à 60' ,
+                value: 0
+            } ,
+            {
+                label :'61 à 70' ,
+                value: 0
+            } ,
+            {
+                label :'71 à 80' ,
+                value: 0
+            } 
+        ]
     }
     connection.query('SELECT * FROM malade',(err,results)=>{
         if (err){
@@ -31,44 +54,7 @@ async function GetStatistics (req,res){
                 Stats.Sexe[malade.sexe]++;
                 const age =calculateAge (malade.dateNaissance);
                 const indice = age/10 >>0; 
-                switch (indice){
-                    case 0 : {
-                        Stats.Age['0 à 10']++;
-                        break;
-                    }  
-                    case 1 : {
-                        Stats.Age['11 à 20']++;
-                        break;
-                    } 
-                    case 2 : {
-                        Stats.Age['21 à 30']++;
-                        break;
-                    }  
-                    case 3 : {
-                        Stats.Age['31 à 40']++;
-                        break;
-                    }  
-                    case 4: {
-                        Stats.Age['41 à 50']++;
-                        break;
-                    }  
-                    case 5 : {
-                        Stats.Age['51 à 60']++;
-                        break;
-                    }  
-                    case 6 : {
-                        Stats.Age['61 à 70']++;
-                        break;
-                    }  
-                    case 7 : {
-                        Stats.Age['71 à 80']++;
-                        break;
-                    }  
-                    case 0 : {
-                        Stats.Age['81 à 90']++;
-                        break;
-                    }  
-                }
+                Stats.Age[indice].value++;
             });
             res.status(200).json({
                 type :"Info",
