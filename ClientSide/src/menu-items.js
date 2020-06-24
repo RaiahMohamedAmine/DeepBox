@@ -103,7 +103,7 @@ export default {
                 }
             ]
         },*/
-        /*{
+        {
             id: 'chart-maps',
             title: 'Chart & Maps',
             type: 'group',
@@ -116,15 +116,15 @@ export default {
                     icon: 'feather icon-pie-chart',
                     url: '/charts/nvd3'
                 },
-                {
+                /*{
                     id: 'maps',
                     title: 'Map',
                     type: 'item',
                     icon: 'feather icon-map',
                     url: '/maps/google-map'
-                }
+                }*/
             ]
-        },*/
+        },
         /*{
             id: 'pages',
             title: 'Pages',
