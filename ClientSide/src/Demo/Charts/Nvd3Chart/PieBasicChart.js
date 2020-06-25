@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios'
 import { Spinner } from 'react-bootstrap'
 import NVD3Chart from 'react-nvd3';
 import GetMaladeEtat from '../../../middleware/malade/GetMaladeEtat';
