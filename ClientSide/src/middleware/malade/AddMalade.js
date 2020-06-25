@@ -11,11 +11,12 @@ export default (data, token) => {
             authorization : 'Bearer '+ token
         }
     }).then (res=> {
-        if (res.data.type ==='Err')
+        if (res.data.type ==='Err'){
             toastr.error('Erreur', "Une Erreur a survenu. Veuillez Réessayez")
-        else      
+        }
+        else{
             toastr.success('Malade Ajouté', "Le malade "+data.prenom + ' ' + data.nom + ' a été ajouté avec Succés');
-
+        }
     }).catch (err=>{
         toastr.error ('Erreur Fatale !', 'Assurez-vous que le serveur est bien en marche');
     });

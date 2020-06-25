@@ -10,10 +10,10 @@ async function addMalade (req,res){
         return;
     }
     console.log(req.body)
-    connection.query ('INSERT INTO malade SET ?', req.body.patient, (err) => {
+    connection.query ('INSERT INTO malade SET ?', req.body, (err) => {
         if (err) {
             console.log(err)
-            res.status(500).json({
+            res.status(200).json({
                 type:"Err",
                 message :"Server not responding"
             });
