@@ -1,9 +1,8 @@
 import React from 'react';
 import { Row, Col, Card, Table, Tabs, Tab, Spinner } from 'react-bootstrap';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
-import axios from 'axios'
-
-
+import GetMaladeEtat from '../../middleware/malade/GetMaladeEtat';
+import { withCookies } from 'react-cookie';
 import Aux from "../../hoc/_Aux";
 
 class BootstrapTable extends React.Component {
@@ -32,38 +31,43 @@ class BootstrapTable extends React.Component {
     }
 
     refreshMalades() {
-        axios.get('http://localhost:5200/malade/get/Suspect').then((response) => {
+        var {cookies} = this.props;
+
+        GetMaladeEtat('Suspect',cookies.get('jwt')).then(malades=>{
             this.setState({
-                suspects: response.data.malades,
+                suspects: malades,
                 loading : this.state.loading+1
             }, () => {
-                console.log(this.state.suspects)
+            console.log(this.state.suspects)
             })
-        })
-        axios.get('http://localhost:5200/malade/get/Positif').then((response) => {
+        });
+
+        GetMaladeEtat('Positif',cookies.get('jwt')).then(malades=>{
             this.setState({
-                positifCases: response.data.malades,
+                positifCases: malades,
                 loading : this.state.loading+1
             }, () => {
-                console.log(this.state.positifCases)
+            console.log(this.state.positifCases)
             })
-        })
-        axios.get('http://localhost:5200/malade/get/Negatif').then((response) => {
+        });
+
+        GetMaladeEtat('Negatif',cookies.get('jwt')).then(malades=>{
             this.setState({
-                negatifCases: response.data.malades,
+                negatifCases: malades,
                 loading : this.state.loading+1
             }, () => {
-                console.log(this.state.negatifCases)
+            console.log(this.state.negatifCases)
             })
-        })
-        axios.get('http://localhost:5200/malade/get/Gueri').then((response) => {
+        });
+
+        GetMaladeEtat('Gueri',cookies.get('jwt')).then(malades=>{
             this.setState({
-                healdCases: response.data.malades,
+                healdCases: malades,
                 loading : this.state.loading+1
             }, () => {
-                console.log(this.state.healdCases)
+            console.log(this.state.healdCases)
             })
-        })
+        });
     }
 
     togglePatientModal() {
@@ -361,4 +365,4 @@ class BootstrapTable extends React.Component {
     }
 }
 
-export default BootstrapTable;
+export default withCookies(BootstrapTable);

@@ -5,15 +5,15 @@ import {toastr} from 'react-redux-toastr'
 export default (etat, token) => {
     return axios ({
         method: 'GET',
-        url : config.URL+ ":" + config.PORT +'malade/'+etat,
+        url : config.URL+ ":" + config.PORT +'/malade/get/'+etat,
         headers : {
             authorization : 'Bearer '+ token
         }
     }).then (res=> {
-        if (res.data.type='Err')
+        if (res.data.type ==='Err')
             toastr.error('Erreur', "Une Erreur a survenu. Veuillez Réessayez")
         else
-            return res.data;
+            return res.data.malades;
     }).catch (err=>{
         toastr.error ('Erreur Fatale !', 'Assurez-vous que le serveur est bien en marche');
     });
