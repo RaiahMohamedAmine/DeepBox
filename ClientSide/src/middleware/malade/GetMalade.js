@@ -2,7 +2,7 @@ import axios from 'axios';
 import config from '../config';
 import {toastr} from 'react-redux-toastr'
 
-export default (etat, token) => {
+export default (token) => {
     return axios ({
         method: 'GET',
         url : config.URL+ ":" + config.PORT +'/malade/get',

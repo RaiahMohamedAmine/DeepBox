@@ -1,8 +1,8 @@
 import React from 'react';
-import axios from 'axios'
 import { Spinner } from 'react-bootstrap'
 import NVD3Chart from 'react-nvd3';
-
+import { withCookies } from 'react-cookie';
+import GetMalade from '../../../middleware/malade/GetMalade';
 var datum = [
     {
         key: "Cumulative Return",
@@ -14,31 +14,7 @@ var datum = [
             "label": "Femmes",
             "value": 0,
             "color": "#3ebfea"
-        },/* {
-            "label": "C",
-            "value": 32.807804682612,
-            "color": "#ff8a65"
-        }, {
-            "label": "D",
-            "value": 196.45946739256,
-            "color": "#1de9b6"
-        }, {
-            "label": "E",
-            "value": 0.25434030906893,
-            "color": "#4C5667"
-        }, {
-            "label": "F",
-            "value": -98.079782601442,
-            "color": "#69CEC6"
-        }, {
-            "label": "G",
-            "value": -13.925743130903,
-            "color": "#a389d4"
-        }, {
-            "label": "H",
-            "value": -5.1387322875705,
-            "color": "#FE8A7D"
-        }*/]
+        }]
     }
 ];
 
@@ -53,9 +29,10 @@ class BarDiscreteChart extends React.Component {
     }
 
     refreshMalades() {
-        axios.get('http://localhost:5200/malade/get').then((response) => {
+        var {cookies} = this.props;
+        GetMalade(cookies.get('jwt')).then(malades=>{
             this.setState({
-                malades: response.data.malades,
+                malades: malades,
                 loading: this.state.loading + 1
             }, () => {
                 var malade
@@ -80,4 +57,4 @@ class BarDiscreteChart extends React.Component {
     }
 }
 
-export default BarDiscreteChart;
+export default withCookies(BarDiscreteChart);
