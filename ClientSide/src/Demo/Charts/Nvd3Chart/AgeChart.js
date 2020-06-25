@@ -1,7 +1,8 @@
 import React from 'react';
-import axios from 'axios'
 import { Spinner } from 'react-bootstrap'
 import NVD3Chart from 'react-nvd3';
+import { withCookies } from 'react-cookie';
+import GetStatistics from '../../../middleware/malade/GetStatistics';
 
 var datum = [
     {
@@ -72,21 +73,21 @@ class BarDiscreteChart extends React.Component {
     }
 
     refreshMalades() {
-        axios.get('http://localhost:5200/malade/statistics').then((response) => {
-        
-            datum.values=response.data.Stats.Age    
-        this.setState({
+        var {cookies} =this.props;
+        GetStatistics(cookies.get('jwt')).then(Stats=>{
+            datum.values= Stats.Age ;
+            this.setState({
                 loading: false
             }, () => {
                 var age;
                 var i=0;
-                for (age of response.data.Stats.Age) {
+                for (age of Stats.Age) {
                     console.log(age.value);
                     datum[0].values[i].value = age.value
                     i++;
                 }
-            })
-        })
+            })    
+        });
     }
     render() {
         return (
@@ -102,4 +103,4 @@ class BarDiscreteChart extends React.Component {
     }
 }
 
-export default BarDiscreteChart;
+export default withCookies(BarDiscreteChart);
