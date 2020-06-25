@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios'
 import { Spinner } from 'react-bootstrap'
 import NVD3Chart from 'react-nvd3';
+import GetMaladeEtat from '../../../middleware/malade/GetMaladeEtat';
+import {withCookies} from 'react-cookie';
 
 var datum = [
     { key: "Suspects", y: 0, color: "#ff8a65" },
@@ -24,38 +26,43 @@ class PieBasicChart extends React.Component {
     }
 
     refreshMalades() {
-        axios.get('http://localhost:5200/malade/get/Suspect').then((response) => {
+        var {cookies} = this.props;
+
+        GetMaladeEtat('Suspect',cookies.get('jwt')).then(malades=>{
             this.setState({
-                suspects: response.data.malades,
-                loading: this.state.loading + 1
+                suspects: malades,
+                loading : this.state.loading+1
             }, () => {
-                datum[0].y = this.state.suspects.length
-            })
+            datum[0].y = this.state.suspects.length
         })
-        axios.get('http://localhost:5200/malade/get/Positif').then((response) => {
+        });
+
+        GetMaladeEtat('Positif',cookies.get('jwt')).then(malades=>{
             this.setState({
-                positifCases: response.data.malades,
-                loading: this.state.loading + 1
+                positifCases: malades,
+                loading : this.state.loading+1
             }, () => {
-                datum[1].y = this.state.positifCases.length
-            })
+            datum[1].y = this.state.suspects.length
         })
-        axios.get('http://localhost:5200/malade/get/Negatif').then((response) => {
+        });
+
+        GetMaladeEtat('Negatif',cookies.get('jwt')).then(malades=>{
             this.setState({
-                negatifCases: response.data.malades,
-                loading: this.state.loading + 1
+                negatifCases: malades,
+                loading : this.state.loading+1
             }, () => {
-                datum[2].y = this.state.negatifCases.length
-            })
+            datum[2].y = this.state.suspects.length
         })
-        axios.get('http://localhost:5200/malade/get/Gueri').then((response) => {
+        });
+
+        GetMaladeEtat('Gueri',cookies.get('jwt')).then(malades=>{
             this.setState({
-                healdCases: response.data.malades,
-                loading: this.state.loading + 1
+                healdCases: malades,
+                loading : this.state.loading+1
             }, () => {
-                datum[3].y = this.state.healdCases.length
-            })
+            datum[3].y = this.state.suspects.length
         })
+        });
     }
 
     render() {
@@ -71,4 +78,4 @@ class PieBasicChart extends React.Component {
     }
 }
 
-export default PieBasicChart;
+export default withCookies(PieBasicChart);

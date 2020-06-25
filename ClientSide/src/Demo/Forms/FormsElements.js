@@ -53,10 +53,6 @@ class FormsElements extends React.Component {
         console.log(patient)
         const {cookies} = this.props;
         AddMalade(patient,cookies.get('jwt'));
-       /* axios.post('http://localhost:5200/malade/add', { patient })
-            .then((response) => {
-                alert(patient.prenom + " " + patient.nom + " a été ajouté !")
-            })*/
     }
 
     render() {
