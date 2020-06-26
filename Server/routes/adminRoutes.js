@@ -4,5 +4,4 @@ module.exports =(app)=>{
     app.post('/admin/add',Admin.AddAdmin);
     app.post('/admin/login',Admin.Login);
     app.post('/admin/verifyAuth',Admin.VerifyAuth);
-    app.post('/admin/logout',Admin.Logout);
 }
