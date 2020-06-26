@@ -9,7 +9,6 @@ async function addMalade (req,res){
         });
         return;
     }
-    console.log(req.body)
     connection.query ('INSERT INTO malade SET ?', req.body, (err) => {
         if (err) {
             console.log(err)
