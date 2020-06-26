@@ -1,8 +1,7 @@
 const jsw = require('jsonwebtoken');
 const {JSW} = require('../../config');
 
-
-async function VerifyAuth (req,res){
+async function CheckLogged (req,res,next){
     if (!req.headers.authorization)
     {
         res.status(400).json({
@@ -21,13 +20,9 @@ async function VerifyAuth (req,res){
             return;
         }
         else{
-            res.status(200).json({
-                type :"Info",
-                message : "Logged !",
-                user
-            });
+            next();
         }
     });
 }
 
-module.exports= VerifyAuth;
+module.exports= CheckLogged;
