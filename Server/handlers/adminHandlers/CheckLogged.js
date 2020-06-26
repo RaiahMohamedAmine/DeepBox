@@ -6,7 +6,7 @@ async function CheckLogged (req,res,next){
     {
         res.status(400).json({
             type :"Err",
-            message : "Bad Request"
+            message : "No Logged"
         });
         return;
     }

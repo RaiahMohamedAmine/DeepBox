@@ -13,6 +13,9 @@ import AgeChart from '../Charts/Nvd3Chart/AgeChart';
 import avatar1 from '../../assets/images/user/avatar-1.jpg';
 import avatar2 from '../../assets/images/user/avatar-2.jpg';
 import avatar3 from '../../assets/images/user/avatar-3.jpg';
+import GetMalade from '../../middleware/malade/GetMalade';
+import GetMaladeEtat from '../../middleware/malade/GetMaladeEtat';
+import { withCookies } from 'react-cookie';
 
 class Dashboard extends React.Component {
     state = {
@@ -29,35 +32,39 @@ class Dashboard extends React.Component {
     }
 
     refreshMalades() {
-        axios.get('http://localhost:5200/malade/get').then((response) => {
+        const {cookies} = this.props;
+        GetMalade(cookies.get('jwt')).then(malades=>{
             this.setState({
-                malades: response.data.malades,
+                malades: malades,
             })
-        })
-        axios.get('http://localhost:5200/malade/get/Suspect').then((response) => {
+        });  
+        GetMaladeEtat('Suspect',cookies.get('jwt')).then(malades=>{
             this.setState({
-                suspects: response.data.malades,
-                loading: this.state.loading + 1
-            })
-        })
-        axios.get('http://localhost:5200/malade/get/Positif').then((response) => {
+                suspects: malades,
+                loading : this.state.loading+1
+            });
+        });
+
+        GetMaladeEtat('Positif',cookies.get('jwt')).then(malades=>{
             this.setState({
-                positifCases: response.data.malades,
-                loading: this.state.loading + 1
-            })
-        })
-        axios.get('http://localhost:5200/malade/get/Negatif').then((response) => {
+                positifCases: malades,
+                loading : this.state.loading+1
+            });
+        });
+
+        GetMaladeEtat('Negatif',cookies.get('jwt')).then(malades=>{
             this.setState({
-                negatifCases: response.data.malades,
-                loading: this.state.loading + 1
-            })
-        })
-        axios.get('http://localhost:5200/malade/get/Gueri').then((response) => {
+                negatifCases: malades,
+                loading : this.state.loading+1
+            });
+        });
+
+        GetMaladeEtat('Gueri',cookies.get('jwt')).then(malades=>{
             this.setState({
-                healdCases: response.data.malades,
-                loading: this.state.loading + 1
-            })
-        })
+                healdCases: malades,
+                loading : this.state.loading+1
+            });
+        });
     }
 
     render() {
@@ -305,4 +312,4 @@ class Dashboard extends React.Component {
     }
 }
 
-export default Dashboard;
+export default withCookies(Dashboard);
