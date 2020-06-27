@@ -15,9 +15,11 @@ export default (data, token) => {
             toastr.error('Erreur', "Une Erreur a survenu. Veuillez Réessayez")
         }
         else{
-            toastr.success('Malade Ajouté', "Le malade "+data.prenom + ' ' + data.nom + ' a été ajouté avec Succés');
+           // toastr.success('Malade Ajouté', "Le malade "+data.prenom + ' ' + data.nom + ' a été ajouté avec Succés');
+            alert("Le malade "+data.prenom + ' ' + data.nom + " a été ajouté avec Succés")
         }
     }).catch (err=>{
-        toastr.error ('Erreur Fatale !', 'Assurez-vous que le serveur est bien en marche');
+       // toastr.error ('Erreur Fatale !', 'Assurez-vous que le serveur est bien en marche');
+        alert('Assurez-vous que le serveur est bien en marche');
     });
 }
