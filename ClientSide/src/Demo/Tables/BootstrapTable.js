@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Card, Table, Tabs, Tab, Spinner } from 'react-bootstrap';
+import { Row, Col, Card, Table, Tabs, Tab, Spinner, Popover,OverlayTrigger } from 'react-bootstrap';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 import GetMaladeEtat from '../../middleware/malade/GetMaladeEtat';
 import { withCookies } from 'react-cookie';
@@ -96,9 +96,26 @@ class BootstrapTable extends React.Component {
     }
 
     render() {
+        const popup =(
+            <Popover id='malade'>
+                <Popover.Content>
+                    <button style={{backgroundImage : '../../assets/images/complete.png' }, {backgroundSize :50}} > Details </button>
+                    <button>  Modifier</button>
+                    <button>  Supprimer</button>
+                </Popover.Content>
+            </Popover>
+        )
         let suspeciousPatients = this.state.suspects.map((patient, index) => {  
             return (
-                <tr key={index} onClick={this.getPatientData.bind(this, patient)}>
+                <OverlayTrigger 
+                key={index}
+                trigger='click'
+                show={this.state.patientModal ? true :false}
+                placement ='bottom'
+                overlay={popup}         
+                delay='10'           
+                >
+                    <tr key={index} >
                     <th scope="row">{index+1}</th>
                     <td>{patient.prenom}</td>
                     <td>{patient.nom}</td>
@@ -107,6 +124,7 @@ class BootstrapTable extends React.Component {
                     <td>{patient.dateAjout}</td>
                     <td>{patient.sexe}</td>
                 </tr>
+                </OverlayTrigger>
             )
         })
         let positifPatients = this.state.positifCases.map((patient, index) => {
