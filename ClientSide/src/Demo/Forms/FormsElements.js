@@ -1,7 +1,6 @@
 import React from 'react';
 import { Row, Col, Card, Form, Button } from 'react-bootstrap';
 import { Input, FormGroup } from 'reactstrap'
-import axios from 'axios'
 import Formsy from 'formsy-react'
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
@@ -32,6 +31,20 @@ class FormsElements extends React.Component {
         this.setState({ canSubmit: true });
     }
 
+    componentDidMount(){
+        const {location} = this.props ;
+        if (location.modify)
+        {
+            const patient = location.patient
+            this.setState({
+                patientData:{
+                    nom : patient.nom,
+                    prenom : patient.prenom,
+                    adresse : patient.adresse,
+                }
+            },()=>console.log(this.state.patientData))
+        }
+    }
     addPatient() {
         var today = new Date();
         var dd = today.getDate();
