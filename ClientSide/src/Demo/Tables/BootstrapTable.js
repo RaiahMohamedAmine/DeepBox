@@ -96,21 +96,22 @@ class BootstrapTable extends React.Component {
     }
 
     render() {
-        const popup =(
-            <Popover id='malade'>
-                <Popover.Content>
-                    <button style={{backgroundImage : '../../assets/images/complete.png' }, {backgroundSize :50}} > Details </button>
-                    <button>  Modifier</button>
-                    <button>  Supprimer</button>
-                </Popover.Content>
-            </Popover>
-        )
+        
         let suspeciousPatients = this.state.suspects.map((patient, index) => {  
+            const popup =(
+                <Popover id='malade'>
+                    <Popover.Content>
+                        <button onClick={this.getPatientData.bind(this,patient)}> Details </button>
+                        <button>  Modifier</button>
+                        <button>  Supprimer</button>
+                    </Popover.Content>
+                </Popover>
+            )
             return (
                 <OverlayTrigger 
                 key={index}
                 trigger='click'
-                show={this.state.patientModal ? true :false}
+                show={this.state.patientModal}
                 placement ='bottom'
                 overlay={popup}         
                 delay='10'           
