@@ -96,6 +96,7 @@ class FormsElements extends React.Component {
                                                     required
                                                     pattern="[A-Za-z, ]*"
                                                     title="Lettres uniquement !"
+                                                    value={this.state.patientData.nom}
                                                     onChange={(e) => {
                                                         var { patientData } = this.state
                                                         patientData.nom = e.target.value
