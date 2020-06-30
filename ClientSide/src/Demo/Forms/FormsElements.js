@@ -21,7 +21,8 @@ class FormsElements extends React.Component {
             tel: "",
             sexe: "Homme",
         },
-        canSubmit: false
+        canSubmit: false,
+        modify :false
     }
     disableButton() {
         this.setState({ canSubmit: false });
@@ -37,10 +38,17 @@ class FormsElements extends React.Component {
         {
             const patient = location.patient
             this.setState({
+                modify :true,
                 patientData:{
                     nom : patient.nom,
                     prenom : patient.prenom,
                     adresse : patient.adresse,
+                    siege: patient.siege,
+                    dateAjout: patient.dateAjout,
+                    dateNaissance: patient.dateNaissance,
+                    etat: patient.etat,
+                    tel: patient.tel,
+                    sexe: patient.sexe,
                 }
             },()=>console.log(this.state.patientData))
         }
@@ -79,8 +87,8 @@ class FormsElements extends React.Component {
                                 <Card.Title as="h5">Ajout d'un cas suspect</Card.Title>
                             </Card.Header>
                             <Card.Body>
-                                <h5>Ce formulaire permet de signaler tout cas suspect au niveau de votre
-                                établissement.
+                                <h5>{this.state.modify ? "Modifier le malade "+ this.state.patientData.nom + " " +this.state.patientData.prenom: 
+                                " Ce formulaire permet de signaler tout cas suspect au niveau de votre établissement."}
                                 </h5>
                                 <hr />
                                 <Formsy onValidSubmit={this.addPatient.bind(this)}
@@ -94,6 +102,7 @@ class FormsElements extends React.Component {
                                                     placeholder="Nom"
                                                     type="text"
                                                     required
+                                                    disabled={this.state.modify}
                                                     pattern="[A-Za-z, ]*"
                                                     title="Lettres uniquement !"
                                                     value={this.state.patientData.nom}
@@ -111,6 +120,8 @@ class FormsElements extends React.Component {
                                                 <Input
                                                     placeholder="Prénom"
                                                     type="text"
+                                                    disabled={this.state.modify}
+                                                    value={this.state.patientData.prenom}
                                                     required
                                                     pattern="[A-Za-z, ]*"
                                                     title="Lettres uniquement !"
@@ -131,6 +142,8 @@ class FormsElements extends React.Component {
                                                     placeholder="dd-mm-yyyy"
                                                     type="date"
                                                     min="01-01-1900" max="31-12-2030"
+                                                    value={this.state.patientData.prenom}
+                                                    disabled={this.state.modify}
                                                     required
                                                     pattern="^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$"
                                                     title="Veuillez suivre le format correct !"
@@ -164,6 +177,7 @@ class FormsElements extends React.Component {
                                                     type="text"
                                                     required
                                                     pattern="[A-Za-z, ]*"
+                                                    value={this.state.patientData.adresse}
                                                     title="Lettres uniquement !"
                                                     onChange={(e) => {
                                                         var { patientData } = this.state
@@ -178,6 +192,8 @@ class FormsElements extends React.Component {
                                                 <h6>Sexe</h6>
                                                 <Input
                                                     type="select"
+                                                    disabled={this.state.modify}
+                                                    value={this.state.patientData.sexe}
                                                     onChange={(e) => {
                                                         var { patientData } = this.state
                                                         patientData.sexe = e.target.value
@@ -197,6 +213,7 @@ class FormsElements extends React.Component {
                                                 <h6>Siége</h6>
                                                 <Input
                                                     placeholder="Etablissement hospitalier"
+                                                    value={this.state.patientData.siege}
                                                     type="text"
                                                     required
                                                     pattern="[A-Za-z, ]*"
@@ -213,6 +230,7 @@ class FormsElements extends React.Component {
                                             <FormGroup>
                                                 <h6>État</h6>
                                                 <Input
+                                                    value={this.state.patientData.etat}
                                                     type="select"
                                                     onChange={(e) => {
                                                         var { patientData } = this.state
@@ -235,7 +253,7 @@ class FormsElements extends React.Component {
                                         <Col xs={6}>
                                             <br />
                                             <FormGroup>
-                                                <Button color="warning" className="btn-round" type="submit">Ajouter !</Button>
+                                                <Button color="warning" className="btn-round" type="submit">{this.state.modify ? "Modifier !" : "Ajouter !"}</Button>
                                             </FormGroup>
                                         </Col>
 
