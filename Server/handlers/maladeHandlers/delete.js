@@ -9,21 +9,14 @@ async function DeleteMalade (req,res){
         });
         return;
     }
-    connection.query ('DELETE FROM malade Where nom = '+ req.body.nom 
-    +' prenom = '+ req.body.prenom 
-    + 'adresse= ' + req.body.adresse
-    + 'siege= ' + req.body.siege
-    + 'dateAjout= ' + req.body.dateAjout
-    + 'sexe= ' + req.body.sexe
-    + 'etat= ' + req.body.etat
-    + 'tel= ' + req.body.tel, (err) => {
+    connection.query ('DELETE FROM malade WHERE malade.tel =\''+ req.body.tel +'\'', (err) => {
         if (err) {
-            console.log(err)
             res.status(200).json({
                 type:"Err",
                 message :"Server not responding"
             });
         } else{
+            console.log('deleted')
             res.status(200).json({
                 type :"Info",
                 message :"Malade Deleted successfully !"

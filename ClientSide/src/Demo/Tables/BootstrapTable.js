@@ -2,6 +2,7 @@ import React from 'react';
 import { Row, Col, Card, Table, Tabs, Tab, Spinner, Popover,OverlayTrigger } from 'react-bootstrap';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 import GetMaladeEtat from '../../middleware/malade/GetMaladeEtat';
+import DeleteMalade from '../../middleware/malade/DeleteMalade';
 import { withCookies } from 'react-cookie';
 import Aux from "../../hoc/_Aux";
 
@@ -110,7 +111,10 @@ class BootstrapTable extends React.Component {
                                 modify : true
                             })
                         }}>  Modifier </button>
-                        <button>  Supprimer</button>
+                        <button onClick={e=>{
+                            const {cookies} = this.props;
+                            DeleteMalade(patient,cookies.get('jwt'))
+                        }}>  Supprimer</button>
                     </Popover.Content>
                 </Popover>
             )
