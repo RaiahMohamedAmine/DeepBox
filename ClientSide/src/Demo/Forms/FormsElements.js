@@ -139,13 +139,10 @@ class FormsElements extends React.Component {
                                             <FormGroup>
                                                 <h6>Date de naissance</h6>
                                                 <Input
-                                                    placeholder="dd-mm-yyyy"
                                                     type="date"
-                                                    min="01-01-1900" max="31-12-2030"
                                                     value={this.state.patientData.prenom}
                                                     disabled={this.state.modify}
                                                     required
-                                                    pattern="^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$"
                                                     title="Veuillez suivre le format correct !"
                                                     onChange={(e) => {
                                                         var { patientData } = this.state
@@ -158,12 +155,15 @@ class FormsElements extends React.Component {
                                         <Col xs={6}>
                                             <FormGroup>
                                                 <h6>Téléphone</h6>
-                                                <PhoneInput
-                                                    country={'dz'}
+                                                <Input
+                                                    placeholder='Numéro de téléphone'
+                                                    pattern='0[5-7][0-9]{8}'
+                                                    title="Veuilez donnez un Numéro de téléphone Valide "
+                                                    required
                                                     value={this.state.patientData.tel}
-                                                    onChange={phone => {
+                                                    onChange={e => {
                                                         var { patientData } = this.state
-                                                        patientData.tel = phone
+                                                        patientData.tel = e.target.value
                                                         this.setState({ patientData })
                                                     }}
                                                 />
