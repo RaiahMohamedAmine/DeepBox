@@ -1,6 +1,6 @@
 const connection = require('../../db');
 
-async function addMalade (req,res){
+async function DeleteMalade (req,res){
     if (!req.body)
     {
         res.status(400).json({
@@ -32,4 +32,4 @@ async function addMalade (req,res){
     });
 }
 
-module.exports = addMalade;
+module.exports = DeleteMalade;
