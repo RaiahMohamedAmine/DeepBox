@@ -140,8 +140,35 @@ class BootstrapTable extends React.Component {
             )
         })
         let positifPatients = this.state.positifCases.map((patient, index) => {
+            const popup =(
+                <Popover id='malade'>
+                    <Popover.Content>
+                        <button onClick={this.getPatientData.bind(this,patient)}> Details </button>
+                        <button onClick={e=> {
+                            const {history} =this.props ;
+                            history.push({
+                                pathname :"/forms/form-basic",
+                                patient,
+                                modify : true
+                            })
+                        }}>  Modifier </button>
+                        <button onClick={e=>{
+                            const {cookies} = this.props;
+                            DeleteMalade(patient,cookies.get('jwt'))
+                        }}>  Supprimer</button>
+                    </Popover.Content>
+                </Popover>
+            )
             return (
-                <tr key={index} onClick={this.getPatientData.bind(this, patient)}>
+                <OverlayTrigger 
+                key={index}
+                trigger='click'
+                show={this.state.patientModal}
+                placement ='bottom'
+                overlay={popup}         
+                delay='10'           
+                >
+                    <tr key={index} >
                     <th scope="row">{index+1}</th>
                     <td>{patient.prenom}</td>
                     <td>{patient.nom}</td>
@@ -150,11 +177,39 @@ class BootstrapTable extends React.Component {
                     <td>{patient.dateAjout}</td>
                     <td>{patient.sexe}</td>
                 </tr>
+                </OverlayTrigger>
             )
         })
         let NegatifPatients = this.state.negatifCases.map((patient, index) => {
+            const popup =(
+                <Popover id='malade'>
+                    <Popover.Content>
+                        <button onClick={this.getPatientData.bind(this,patient)}> Details </button>
+                        <button onClick={e=> {
+                            const {history} =this.props ;
+                            history.push({
+                                pathname :"/forms/form-basic",
+                                patient,
+                                modify : true
+                            })
+                        }}>  Modifier </button>
+                        <button onClick={e=>{
+                            const {cookies} = this.props;
+                            DeleteMalade(patient,cookies.get('jwt'))
+                        }}>  Supprimer</button>
+                    </Popover.Content>
+                </Popover>
+            )
             return (
-                <tr key={index} onClick={this.getPatientData.bind(this, patient)}>
+                <OverlayTrigger 
+                key={index}
+                trigger='click'
+                show={this.state.patientModal}
+                placement ='bottom'
+                overlay={popup}         
+                delay='10'           
+                >
+                    <tr key={index} >
                     <th scope="row">{index+1}</th>
                     <td>{patient.prenom}</td>
                     <td>{patient.nom}</td>
@@ -163,11 +218,39 @@ class BootstrapTable extends React.Component {
                     <td>{patient.dateAjout}</td>
                     <td>{patient.sexe}</td>
                 </tr>
+                </OverlayTrigger>
             )
         })
         let healdPatients = this.state.healdCases.map((patient, index) => {
+            const popup =(
+                <Popover id='malade'>
+                    <Popover.Content>
+                        <button onClick={this.getPatientData.bind(this,patient)}> Details </button>
+                        <button onClick={e=> {
+                            const {history} =this.props ;
+                            history.push({
+                                pathname :"/forms/form-basic",
+                                patient,
+                                modify : true
+                            })
+                        }}>  Modifier </button>
+                        <button onClick={e=>{
+                            const {cookies} = this.props;
+                            DeleteMalade(patient,cookies.get('jwt'))
+                        }}>  Supprimer</button>
+                    </Popover.Content>
+                </Popover>
+            )
             return (
-                <tr key={index} onClick={this.getPatientData.bind(this, patient)}>
+                <OverlayTrigger 
+                key={index}
+                trigger='click'
+                show={this.state.patientModal}
+                placement ='bottom'
+                overlay={popup}         
+                delay='10'           
+                >
+                    <tr key={index} >
                     <th scope="row">{index+1}</th>
                     <td>{patient.prenom}</td>
                     <td>{patient.nom}</td>
@@ -176,6 +259,7 @@ class BootstrapTable extends React.Component {
                     <td>{patient.dateAjout}</td>
                     <td>{patient.sexe}</td>
                 </tr>
+                </OverlayTrigger>
             )
         })
 
