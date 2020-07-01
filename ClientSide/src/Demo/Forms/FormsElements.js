@@ -11,6 +11,7 @@ import { withCookies } from 'react-cookie';
 class FormsElements extends React.Component {
     state = {
         patientData: {
+            id: "",
             nom: "",
             prenom: "",
             adresse: "",
@@ -40,6 +41,7 @@ class FormsElements extends React.Component {
             this.setState({
                 modify :true,
                 patientData:{
+                    id : patient.id,
                     nom : patient.nom,
                     prenom : patient.prenom,
                     adresse : patient.adresse,
@@ -65,10 +67,8 @@ class FormsElements extends React.Component {
             mm = '0' + mm;
         }
         today = yyyy + '-' + mm + '-' + dd;
-        var phone = this.state.patientData.tel.slice(3)
         var { patientData } = this.state
         patientData.dateAjout = today
-        patientData.tel = phone
         this.setState({ patientData })
         let patient = this.state.patientData
         console.log(patient)
@@ -94,6 +94,27 @@ class FormsElements extends React.Component {
                                 <Formsy onValidSubmit={this.addPatient.bind(this)}
                                     onValid={this.enableButton.bind(this)}
                                     onInvalid={this.disableButton.bind(this)}>
+                                    <Row>
+                                    <Col xs={6}>
+                                            <FormGroup>
+                                                <h6>Identificateur National</h6>
+                                                <Input
+                                                    placeholder="Identificateur National"
+                                                    type="text"
+                                                    required
+                                                    disabled={this.state.modify}
+                                                    pattern="[0-9, ]*"
+                                                    title="Chiffres uniquement !"
+                                                    value={this.state.patientData.id}
+                                                    onChange={(e) => {
+                                                        var { patientData } = this.state
+                                                        patientData.id = e.target.value
+                                                        this.setState({ patientData })
+                                                    }}
+                                                />
+                                            </FormGroup>
+                                        </Col>
+                                    </Row>
                                     <Row >
                                         <Col xs={6}>
                                             <FormGroup>
@@ -140,7 +161,7 @@ class FormsElements extends React.Component {
                                                 <h6>Date de naissance</h6>
                                                 <Input
                                                     type="date"
-                                                    value={this.state.patientData.prenom}
+                                                    value={this.state.patientData.dateNaissance}
                                                     disabled={this.state.modify}
                                                     required
                                                     title="Veuillez suivre le format correct !"

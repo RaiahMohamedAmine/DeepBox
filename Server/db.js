@@ -21,10 +21,11 @@ connection.connect((err)=>{
 
 const createDBs =(connection)=> {
         connection.query('CREATE TABLE malade ('
+        +'id varchar(30) primary key,'
         +'nom varchar(20) not null,'
         +'prenom varchar(20) not null,'
         +'etat varchar(20) not null,'
-        +'tel varchar(10) primary key,'
+        +'tel varchar(10) not null,'
         +'adresse varchar(30) not null,'
         +'sexe varchar(5) not null,'
         +'siege varchar(20) not null,'
