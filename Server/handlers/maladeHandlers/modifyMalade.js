@@ -16,10 +16,10 @@ async function ModifyMalade (req,res){
                 message :"Server not responding"
             });
         } else{
-            console.log('deleted')
+            console.log('Modified')
             res.status(200).json({
                 type :"Info",
-                message :"Malade Deleted successfully !"
+                message :"Malade Modified successfully !"
             });
         }
     });
