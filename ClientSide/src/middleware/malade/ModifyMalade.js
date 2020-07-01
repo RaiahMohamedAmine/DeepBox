@@ -13,6 +13,7 @@ export default (data, token) => {
     }).then (res=> {
         if (res.data.type ==='Err'){
             toastr.error('Erreur', "Une Erreur a survenu. Veuillez Réessayez")
+            alert("Une Erreur a survenu. Veuillez Réessayez")
         }
         else{
            // toastr.success('Malade Ajouté', "Le malade "+data.prenom + ' ' + data.nom + ' a été ajouté avec Succés');

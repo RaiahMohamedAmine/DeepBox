@@ -6,6 +6,7 @@ import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import Aux from "../../hoc/_Aux";
 import AddMalade from '../../middleware/malade/AddMalade';
+import ModifyMalade from '../../middleware/malade/ModifyMalade';
 import { withCookies } from 'react-cookie';
 
 class FormsElements extends React.Component {
@@ -52,9 +53,10 @@ class FormsElements extends React.Component {
                     tel: patient.tel,
                     sexe: patient.sexe,
                 }
-            },()=>console.log(this.state.patientData))
+            },()=>console.log(this.state))
         }
     }
+
     addPatient() {
         var today = new Date();
         var dd = today.getDate();
@@ -76,6 +78,12 @@ class FormsElements extends React.Component {
         AddMalade(patient,cookies.get('jwt'));
     }
 
+    modifyPatient () {
+        let patient = this.state.patientData
+        console.log(patient)
+        const {cookies} = this.props;
+        ModifyMalade(patient,cookies.get('jwt'));
+    }
     render() {
         return (
 
@@ -91,7 +99,7 @@ class FormsElements extends React.Component {
                                 " Ce formulaire permet de signaler tout cas suspect au niveau de votre établissement."}
                                 </h5>
                                 <hr />
-                                <Formsy onValidSubmit={this.addPatient.bind(this)}
+                                <Formsy onValidSubmit={this.state.modify ? this.modifyPatient.bind(this) : this.addPatient.bind(this)}
                                     onValid={this.enableButton.bind(this)}
                                     onInvalid={this.disableButton.bind(this)}>
                                     <Row>
