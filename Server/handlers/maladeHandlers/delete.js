@@ -9,7 +9,7 @@ async function DeleteMalade (req,res){
         });
         return;
     }
-    connection.query ('DELETE FROM malade WHERE malade.tel =\''+ req.body.tel +'\'', (err) => {
+    connection.query ('DELETE FROM malade WHERE malade.id =\''+ req.body.id +'\'', (err) => {
         if (err) {
             res.status(200).json({
                 type:"Err",
