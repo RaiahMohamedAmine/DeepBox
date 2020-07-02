@@ -39,7 +39,7 @@ const routes = [
     //{ path: '/basic/tabs-pills', exact: true, name: 'Basic Tabs & Pills', component: UIBasicTabsPills },
     //{ path: '/basic/typography', exact: true, name: 'Basic Typography', component: UIBasicBasicTypography },
     { path: '/forms/form-basic', exact: true, name: 'Forms Elements', component: FormsElements },
-    { path: '/tables/bootstrap', exact: true, name: 'Bootstrap Table', component: BootstrapTable },
+    { path: '/malades/tables', exact: true, name: 'Bootstrap Table', component: BootstrapTable },
     { path: '/login', exact: true, name: 'Login', component: SignIn },
     //{ path: '/charts/nvd3', exact: true, name: 'Nvd3 Chart', component: Nvd3Chart },
     //{ path: '/maps/google-map', exact: true, name: 'Google Map', component: GoogleMap },

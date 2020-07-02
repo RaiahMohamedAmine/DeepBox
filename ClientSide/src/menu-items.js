@@ -25,7 +25,7 @@ export default {
                     title: 'Liste des cas',
                     type: 'item',
                     icon: 'feather icon-server',
-                    url: '/tables/bootstrap'
+                    url: '/malades/tables'
                 }
             ]
         },
