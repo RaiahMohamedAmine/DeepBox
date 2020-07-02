@@ -52,17 +52,6 @@ var datum = [
     }
 ];
 
-const colors = [
-    '#009de0',
-    '#bd1320',
-    '#feed01',
-    '#f29400',
-    '#779da1',
-    '#72c3e1',
-    '#62e331',
-    '#7b03fc',
-    '#ca03fc'
-]
 class BarDiscreteChart extends React.Component {
     state = {
         loading: true,

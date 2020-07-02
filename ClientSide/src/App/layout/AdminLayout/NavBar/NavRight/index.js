@@ -8,7 +8,7 @@ import DEMO from "../../../../../store/constant";
 import Avatar1 from '../../../../../assets/images/user/avatar-1.jpg';
 import Avatar2 from '../../../../../assets/images/user/avatar-2.jpg';
 import Avatar3 from '../../../../../assets/images/user/avatar-3.jpg';
-import { withCookies,Cookies } from "react-cookie";
+import { withCookies } from "react-cookie";
 
 class NavRight extends Component {
     state = {

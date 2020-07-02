@@ -86,7 +86,6 @@ class BootstrapTable extends React.Component {
                 siege: data.siege,
                 adresse: data.adresse,
                 etat: data.etat,
-                tel: "0" + data.tel,
                 tel: data.tel,
                 dateAjout: data.dateAjout,
                 dateNaissance: data.dateNaissance,

@@ -1,8 +1,7 @@
 import React from 'react';
-import { Row, Col, Card, Form, Button } from 'react-bootstrap';
+import { Row, Col, Card, Button } from 'react-bootstrap';
 import { Input, FormGroup } from 'reactstrap'
 import Formsy from 'formsy-react'
-import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import Aux from "../../hoc/_Aux";
 import AddMalade from '../../middleware/malade/AddMalade';

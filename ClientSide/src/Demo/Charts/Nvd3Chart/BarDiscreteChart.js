@@ -37,7 +37,7 @@ class BarDiscreteChart extends React.Component {
             }, () => {
                 var malade
                 for (malade of this.state.malades) {
-                    malade.sexe == "Homme" ?
+                    malade.sexe === "Homme" ?
                         datum[0].values[0].value++
                         : datum[0].values[1].value++
                 }

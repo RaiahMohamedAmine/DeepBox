@@ -1,6 +1,5 @@
 import React from 'react';
-import { Row, Col, Card, Table, Spinner, Tabs, Tab } from 'react-bootstrap';
-import axios from 'axios'
+import { Row, Col, Card, Spinner, Tabs, Tab } from 'react-bootstrap';
 import moment from 'moment'
 
 import Aux from "../../hoc/_Aux";
@@ -71,14 +70,14 @@ class Dashboard extends React.Component {
         let CasesSameDay = this.state.malades.map((malade, index) => {
             let date = malade.dateAjout
             let today = new Date()
-            if (parseInt(date.slice(0, 4)) == today.getFullYear()) {
-                if (parseInt(date.slice(5, 7)) == today.getMonth() + 1) {
-                    if (parseInt(date.slice(8)) == parseInt(today.getDate())) {
-                        if (malade.etat == "Positif" || malade.etat == "Négatif") {
+            if (parseInt(date.slice(0, 4)) === today.getFullYear()) {
+                if (parseInt(date.slice(5, 7)) === today.getMonth() + 1) {
+                    if (parseInt(date.slice(8)) === parseInt(today.getDate())) {
+                        if (malade.etat === "Positif" || malade.etat === "Négatif") {
                             return (
                                 <div key={index} className="media friendlist-box align-items-center justify-content-center m-b-20">
                                     <div className="m-r-10 photo-table">
-                                        {malade.sexe == "Homme" ?
+                                        {malade.sexe === "Homme" ?
                                             <a href={DEMO.BLANK_LINK}><img className="rounded-circle" style={{ width: '40px' }} src={avatar2} alt="activity-user" /></a>
                                             :
                                             <a href={DEMO.BLANK_LINK}><img className="rounded-circle" style={{ width: '40px' }} src={avatar1} alt="activity-user" /></a>
@@ -87,7 +86,7 @@ class Dashboard extends React.Component {
                                     </div>
                                     <div className="media-body">
                                         <h6 className="m-0 d-inline">{malade.nom + " " + malade.prenom}</h6>
-                                        {malade.etat == "Positif" ?
+                                        {malade.etat === "Positif" ?
                                             <span className="float-right d-flex  align-items-center"><i className="fa fa-plus f-22 m-r-10 text-c-red" /><b>Positif</b></span>
                                             :
                                             <span className="float-right d-flex  align-items-center"><i className="fa fa-minus f-22 m-r-10 text-c-green" /><b>Négatif</b></span>
@@ -116,11 +115,11 @@ class Dashboard extends React.Component {
             today = yyyy + '-' + mm + '-' + dd;
             //console.log("Date : " + date + " Today : " + today)
             if (moment(date).isSame((today), 'week')) {
-                if (malade.etat == "Positif" || malade.etat == "Négatif") {
+                if (malade.etat === "Positif" || malade.etat === "Négatif") {
                     return (
                         <div key={index} className="media friendlist-box align-items-center justify-content-center m-b-20">
                             <div className="m-r-10 photo-table">
-                                {malade.sexe == "Homme" ?
+                                {malade.sexe === "Homme" ?
                                     <a href={DEMO.BLANK_LINK}><img className="rounded-circle" style={{ width: '40px' }} src={avatar2} alt="activity-user" /></a>
                                     :
                                     <a href={DEMO.BLANK_LINK}><img className="rounded-circle" style={{ width: '40px' }} src={avatar1} alt="activity-user" /></a>
@@ -129,7 +128,7 @@ class Dashboard extends React.Component {
                             </div>
                             <div className="media-body">
                                 <h6 className="m-0 d-inline">{malade.nom + " " + malade.prenom}</h6>
-                                {malade.etat == "Positif" ?
+                                {malade.etat === "Positif" ?
                                     <span className="float-right d-flex  align-items-center"><i className="fa fa-plus f-22 m-r-10 text-c-red" /><b>Positif</b></span>
                                     :
                                     <span className="float-right d-flex  align-items-center"><i className="fa fa-minus f-22 m-r-10 text-c-green" /><b>Négatif</b></span>

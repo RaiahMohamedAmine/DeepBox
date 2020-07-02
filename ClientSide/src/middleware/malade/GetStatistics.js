@@ -1,6 +1,5 @@
 import axios from 'axios';
 import config from '../config';
-import {toastr} from 'react-redux-toastr'
 
 export default (token) => {
     return axios ({
@@ -11,10 +10,10 @@ export default (token) => {
         }
     }).then (res=> {
         if (res.data.type ==='Err')
-            toastr.error('Erreur', "Une Erreur a survenu. Veuillez Réessayez")
+            alert("Une Erreur a survenu. Veuillez Réessayez")
         else
             return res.data.Stats;
     }).catch (err=>{
-        toastr.error ('Erreur Fatale !', 'Assurez-vous que le serveur est bien en marche');
+        alert( 'Assurez-vous que le serveur est bien en marche')
     });
 }
