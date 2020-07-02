@@ -9,8 +9,12 @@ async function ModifyMalade (req,res){
         });
         return;
     }
-    connection.query ('UPDATE malade SET ?',req.body, (err) => {
+    connection.query ("UPDATE malade SET tel ='" + req.body.tel +"', "
+    + "adresse = '" + req.body.adresse  +"', "
+    + "siege = '" + req.body.siege  +"', "
+    + "etat = '" + req.body.etat + "' WHERE id = '"+ req.body.id +"'" , (err) => {
         if (err) {
+            console.log(err);
             res.status(200).json({
                 type:"Err",
                 message :"Server not responding"
