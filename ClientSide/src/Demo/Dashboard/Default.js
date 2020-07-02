@@ -227,10 +227,10 @@ class Dashboard extends React.Component {
                     <Row>
                         <Col md={6} xl={8} className='m-b-30'>
                             <Tabs defaultActiveKey="today" id="uncontrolled-tab-example">
-                                <Tab eventKey="today" title="Today">
+                                <Tab eventKey="today" title="Aujourd'hui">
                                     {CasesSameDay}
                                 </Tab>
-                                <Tab eventKey="week" title="This Week">
+                                <Tab eventKey="week" title="Cette Semaine">
                                     {CasesSameWeek}
                                 </Tab>
                             </Tabs>

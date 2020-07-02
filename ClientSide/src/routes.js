@@ -27,6 +27,7 @@ const FormsElements = React.lazy(() => import('./Demo/Forms/FormsElements'));
 
 const BootstrapTable = React.lazy(() => import('./Demo/Tables/BootstrapTable'));
 
+const SignIn = React.lazy(() => import('./Demo/Authentication/SignIn/SignIn1'));
 
 
 const routes = [
@@ -39,6 +40,7 @@ const routes = [
     //{ path: '/basic/typography', exact: true, name: 'Basic Typography', component: UIBasicBasicTypography },
     { path: '/forms/form-basic', exact: true, name: 'Forms Elements', component: FormsElements },
     { path: '/tables/bootstrap', exact: true, name: 'Bootstrap Table', component: BootstrapTable },
+    { path: '/login', exact: true, name: 'Login', component: SignIn },
     //{ path: '/charts/nvd3', exact: true, name: 'Nvd3 Chart', component: Nvd3Chart },
     //{ path: '/maps/google-map', exact: true, name: 'Google Map', component: GoogleMap },
     //{ path: '/sample-page', exact: true, name: 'Sample Page', component: OtherSamplePage },
