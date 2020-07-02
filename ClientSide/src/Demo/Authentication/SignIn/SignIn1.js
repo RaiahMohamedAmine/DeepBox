@@ -7,6 +7,10 @@ import axios from 'axios';
 import { withCookies } from 'react-cookie';
 
 class SignUp1 extends React.Component {
+    state ={
+        saveCredantials :false
+    }
+
     onClick () {
         const {username,pass}= this.refs;
         axios({
@@ -21,8 +25,10 @@ class SignUp1 extends React.Component {
                 alert(res.data.message);
             }
             else{
-                const {cookies} = this.props;
-                cookies.set('jwt',res.data.token);
+                if (this.state.saveCredantials) {
+                    const {cookies} = this.props;
+                    cookies.set('jwt',res.data.token);
+                }
                 this.props.setLogged();
             }
         })
@@ -45,6 +51,7 @@ class SignUp1 extends React.Component {
                                     <i className="feather icon-unlock auth-icon"/>
                                 </div>
                                 <h3 className="mb-4">Login</h3>
+                                <h5 className="mb-4"> Crisis Alert</h5>
                                 <div className="input-group mb-3">
                                     <input type="text" className="form-control" placeholder="Username" ref='username'/>
                                 </div>
@@ -53,7 +60,9 @@ class SignUp1 extends React.Component {
                                 </div>
                                 <div className="form-group text-left">
                                     <div className="checkbox checkbox-fill d-inline">
-                                        <input type="checkbox" name="checkbox-fill-1" id="checkbox-fill-a1" />
+                                        <input type="checkbox" name="checkbox-fill-1" id="checkbox-fill-a1" onChange={e=>  this.setState({
+                                            saveCredantials :!this.state.saveCredantials
+                                        })} />
                                             <label htmlFor="checkbox-fill-a1" className="cr"> Save credentials</label>
                                     </div>
                                 </div>
