@@ -13,6 +13,7 @@ class BootstrapTable extends React.Component {
         negatifCases: [],
         healdCases: [],
         patientData: {
+            id :'',
             nom: "",
             prenom: "",
             adresse: "",
@@ -81,6 +82,7 @@ class BootstrapTable extends React.Component {
         console.log(data)
         this.setState({
             patientData: {
+                id:data.id,
                 nom: data.nom,
                 prenom: data.prenom,
                 siege: data.siege,
@@ -273,6 +275,16 @@ class BootstrapTable extends React.Component {
                     <ModalBody>
                         <Row>
                             <Col xs={6}>
+                                <h6>ID</h6>
+                                <p>{this.state.patientData.id}</p>
+                            </Col>
+                            <Col xs={6}>
+                                <h6>Date d'Ajout</h6>
+                                <p>{this.state.patientData.dateAjout}</p>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col xs={6}>
                                 <h6>Prénom</h6>
                                 <p>{this.state.patientData.prenom}</p>
                             </Col>
@@ -297,8 +309,8 @@ class BootstrapTable extends React.Component {
                                 <p>{this.state.patientData.siege}</p>
                             </Col>
                             <Col xs={6}>
-                                <h6>Date d'ajout</h6>
-                                <p>{this.state.patientData.dateAjout}</p>
+                                <h6>Sexe</h6>
+                                <p>{this.state.patientData.sexe}</p>
                             </Col>
                         </Row>
                         <Row>
@@ -309,12 +321,6 @@ class BootstrapTable extends React.Component {
                             <Col xs={6}>
                                 <h6>Etat</h6>
                                 <p>{this.state.patientData.etat}</p>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col xs={6}>
-                                <h6>Sexe</h6>
-                                <p>{this.state.patientData.sexe}</p>
                             </Col>
                         </Row>
                     </ModalBody>
