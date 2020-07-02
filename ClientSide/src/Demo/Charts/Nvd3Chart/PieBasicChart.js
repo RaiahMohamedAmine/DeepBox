@@ -41,7 +41,7 @@ class PieBasicChart extends React.Component {
                 positifCases: malades,
                 loading : this.state.loading+1
             }, () => {
-            datum[1].y = this.state.suspects.length
+            datum[1].y = this.state.positifCases.length
         })
         });
 
@@ -50,7 +50,7 @@ class PieBasicChart extends React.Component {
                 negatifCases: malades,
                 loading : this.state.loading+1
             }, () => {
-            datum[2].y = this.state.suspects.length
+            datum[2].y = this.state.negatifCases.length
         })
         });
 
@@ -59,7 +59,7 @@ class PieBasicChart extends React.Component {
                 healdCases: malades,
                 loading : this.state.loading+1
             }, () => {
-            datum[3].y = this.state.suspects.length
+            datum[3].y = this.state.healdCases.length
         })
         });
     }

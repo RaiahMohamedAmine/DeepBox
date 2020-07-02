@@ -73,7 +73,7 @@ class Dashboard extends React.Component {
             if (parseInt(date.slice(0, 4)) === today.getFullYear()) {
                 if (parseInt(date.slice(5, 7)) === today.getMonth() + 1) {
                     if (parseInt(date.slice(8)) === parseInt(today.getDate())) {
-                        if (malade.etat === "Positif" || malade.etat === "Négatif") {
+                        if (malade.etat === "Positif" || malade.etat === "Negatif") {
                             return (
                                 <div key={index} className="media friendlist-box align-items-center justify-content-center m-b-20">
                                     <div className="m-r-10 photo-table">
@@ -100,22 +100,21 @@ class Dashboard extends React.Component {
             }
         })
 
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1;
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+        if (mm < 10) {
+            mm = '0' + mm;
+        }
+        today = yyyy + '-' + mm + '-' + dd;
         let CasesSameWeek = this.state.malades.map((malade, index) => {
             let date = malade.dateAjout
-            var today = new Date();
-            var dd = today.getDate();
-            var mm = today.getMonth() + 1;
-            var yyyy = today.getFullYear();
-            if (dd < 10) {
-                dd = '0' + dd;
-            }
-            if (mm < 10) {
-                mm = '0' + mm;
-            }
-            today = yyyy + '-' + mm + '-' + dd;
             //console.log("Date : " + date + " Today : " + today)
-            if (moment(date).isSame((today), 'week')) {
-                if (malade.etat === "Positif" || malade.etat === "Négatif") {
+            if (moment(date).isSame(today, 'week')) {
                     return (
                         <div key={index} className="media friendlist-box align-items-center justify-content-center m-b-20">
                             <div className="m-r-10 photo-table">
@@ -131,73 +130,19 @@ class Dashboard extends React.Component {
                                 {malade.etat === "Positif" ?
                                     <span className="float-right d-flex  align-items-center"><i className="fa fa-plus f-22 m-r-10 text-c-red" /><b>Positif</b></span>
                                     :
+                                    malade.etat==='Negatif' ? 
                                     <span className="float-right d-flex  align-items-center"><i className="fa fa-minus f-22 m-r-10 text-c-green" /><b>Négatif</b></span>
+                                    :
+                                    malade.etat==='Suspect' ? 
+                                    <span className="float-right d-flex  align-items-center"><i className="feather icon-alert-circle f-30 text-c-black" /><b>Suspect</b></span>
+                                    :
+                                    <span className="float-right d-flex  align-items-center"><i className="feather icon-zap f-30 text-c-yellow" /><b>Guéri</b></span>
                                 }
                             </div>
                         </div>
                     )
-                }
             }
         })
-
-        const tabContent = (
-            <Aux>
-                <div className="media friendlist-box align-items-center justify-content-center m-b-20">
-                    <div className="m-r-10 photo-table">
-                        <a href={DEMO.BLANK_LINK}><img className="rounded-circle" style={{ width: '40px' }} src={avatar1} alt="activity-user" /></a>
-                    </div>
-                    <div className="media-body">
-                        <h6 className="m-0 d-inline">Silje Larsen</h6>
-                        <span className="float-right d-flex  align-items-center"><i className="fa fa-caret-up f-22 m-r-10 text-c-green" />3784</span>
-                    </div>
-                </div>
-                <div className="media friendlist-box align-items-center justify-content-center m-b-20">
-                    <div className="m-r-10 photo-table">
-                        <a href={DEMO.BLANK_LINK}><img className="rounded-circle" style={{ width: '40px' }} src={avatar2} alt="activity-user" /></a>
-                    </div>
-                    <div className="media-body">
-                        <h6 className="m-0 d-inline">Julie Vad</h6>
-                        <span className="float-right d-flex  align-items-center"><i className="fa fa-caret-up f-22 m-r-10 text-c-green" />3544</span>
-                    </div>
-                </div>
-                <div className="media friendlist-box align-items-center justify-content-center m-b-20">
-                    <div className="m-r-10 photo-table">
-                        <a href={DEMO.BLANK_LINK}><img className="rounded-circle" style={{ width: '40px' }} src={avatar3} alt="activity-user" /></a>
-                    </div>
-                    <div className="media-body">
-                        <h6 className="m-0 d-inline">Storm Hanse</h6>
-                        <span className="float-right d-flex  align-items-center"><i className="fa fa-caret-down f-22 m-r-10 text-c-red" />2739</span>
-                    </div>
-                </div>
-                <div className="media friendlist-box align-items-center justify-content-center m-b-20">
-                    <div className="m-r-10 photo-table">
-                        <a href={DEMO.BLANK_LINK}><img className="rounded-circle" style={{ width: '40px' }} src={avatar1} alt="activity-user" /></a>
-                    </div>
-                    <div className="media-body">
-                        <h6 className="m-0 d-inline">Frida Thomse</h6>
-                        <span className="float-right d-flex  align-items-center"><i className="fa fa-caret-down f-22 m-r-10 text-c-red" />1032</span>
-                    </div>
-                </div>
-                <div className="media friendlist-box align-items-center justify-content-center m-b-20">
-                    <div className="m-r-10 photo-table">
-                        <a href={DEMO.BLANK_LINK}><img className="rounded-circle" style={{ width: '40px' }} src={avatar2} alt="activity-user" /></a>
-                    </div>
-                    <div className="media-body">
-                        <h6 className="m-0 d-inline">Silje Larsen</h6>
-                        <span className="float-right d-flex  align-items-center"><i className="fa fa-caret-up f-22 m-r-10 text-c-green" />8750</span>
-                    </div>
-                </div>
-                <div className="media friendlist-box align-items-center justify-content-center">
-                    <div className="m-r-10 photo-table">
-                        <a href={DEMO.BLANK_LINK}><img className="rounded-circle" style={{ width: '40px' }} src={avatar3} alt="activity-user" /></a>
-                    </div>
-                    <div className="media-body">
-                        <h6 className="m-0 d-inline">Storm Hanse</h6>
-                        <span className="float-right d-flex  align-items-center"><i className="fa fa-caret-down f-22 m-r-10 text-c-red" />8750</span>
-                    </div>
-                </div>
-            </Aux>
-        );
 
         return (
             <>
