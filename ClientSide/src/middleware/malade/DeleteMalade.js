@@ -15,6 +15,7 @@ export default (data, token) => {
     }
         else{
             alert("Le malade "+data.prenom + ' ' + data.nom + " a été supprimé avec Succés")
+            window.location.reload(true);
         }
     }).catch (err=>{
         alert('Assurez-vous que le serveur est bien en marche');

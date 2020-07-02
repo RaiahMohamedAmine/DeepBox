@@ -114,7 +114,7 @@ class BootstrapTable extends React.Component {
                         }}>  Modifier </button>
                         <button onClick={e=>{
                             const {cookies} = this.props;
-                            DeleteMalade(patient,cookies.get('jwt'))
+                            DeleteMalade(patient,cookies.get('jwt'));
                         }}>  Supprimer</button>
                     </Popover.Content>
                 </Popover>
