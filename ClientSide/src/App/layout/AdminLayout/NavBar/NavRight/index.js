@@ -44,9 +44,9 @@ class NavRight extends Component {
                                         <div className="media">
                                             <img className="img-radius" src={Avatar1} alt="Generic placeholder"/>
                                             <div className="media-body">
-                                                <p><strong>John Doe</strong><span className="n-time text-muted"><i
+                                                <p><strong>CHU Tizi-Ouzou</strong><span className="n-time text-muted"><i
                                                     className="icon feather icon-clock m-r-10"/>30 min</span></p>
-                                                <p>New ticket Added</p>
+                                                <p>Un nouveau cas détécté</p>
                                             </div>
                                         </div>
                                     </li>
@@ -57,9 +57,9 @@ class NavRight extends Component {
                                         <div className="media">
                                             <img className="img-radius" src={Avatar2} alt="Generic placeholder"/>
                                             <div className="media-body">
-                                                <p><strong>Joseph William</strong><span className="n-time text-muted"><i
+                                                <p><strong>CHU Batna</strong><span className="n-time text-muted"><i
                                                     className="icon feather icon-clock m-r-10"/>30 min</span></p>
-                                                <p>Prchace New Theme and make payment</p>
+                                                <p>18 cas suspects sont signalés</p>
                                             </div>
                                         </div>
                                     </li>
@@ -67,9 +67,9 @@ class NavRight extends Component {
                                         <div className="media">
                                             <img className="img-radius" src={Avatar3} alt="Generic placeholder"/>
                                             <div className="media-body">
-                                                <p><strong>Sara Soudein</strong><span className="n-time text-muted"><i
+                                                <p><strong>CHU Oran</strong><span className="n-time text-muted"><i
                                                     className="icon feather icon-clock m-r-10"/>30 min</span></p>
-                                                <p>currently login</p>
+                                                <p>13 guérisons au CoronaVirus</p>
                                             </div>
                                         </div>
                                     </li>
@@ -90,8 +90,8 @@ class NavRight extends Component {
                             </Dropdown.Toggle>
                             <Dropdown.Menu alignRight className="profile-notification">
                                 <div className="pro-head">
-                                    <img src={Avatar1} className="img-radius" alt="User Profile"/>
-                                    <span>John Doe</span>
+                                    <img src={Avatar2} className="img-radius" alt="User Profile"/>
+                                    <span>Admin</span>
                                     <a href={DEMO.BLANK_LINK} className="dud-logout" title="Logout" onClick={this.logout.bind(this)}>
                                         <i className="feather icon-log-out"/>
                                     </a>
