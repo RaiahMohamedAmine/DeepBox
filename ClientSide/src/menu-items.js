@@ -15,7 +15,7 @@ export default {
                 },
                 {
                     id: 'form-basic',
-                    title: 'Ajout de cas',
+                    title: 'Ajouter malade',
                     type: 'item',
                     url: '/malades/ajouter',
                     icon: 'feather icon-file-text'
@@ -26,7 +26,7 @@ export default {
                     type: 'item',
                     icon: 'feather icon-server',
                     url: '/malades/tables'
-                }
+                },
             ]
         },
         /*{
