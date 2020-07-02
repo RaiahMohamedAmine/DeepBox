@@ -10,14 +10,14 @@ export default {
                     id: 'dashboard',
                     title: 'Dashboard',
                     type: 'item',
-                    url: '/dashboard/default',
+                    url: '/dashboard',
                     icon: 'feather icon-home',
                 },
                 {
                     id: 'form-basic',
                     title: 'Ajout de cas',
                     type: 'item',
-                    url: '/forms/form-basic',
+                    url: '/malades/ajouter',
                     icon: 'feather icon-file-text'
                 },
                 {
