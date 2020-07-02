@@ -128,6 +128,7 @@ class BootstrapTable extends React.Component {
                 >
                     <tr key={index} >
                     <th scope="row">{index+1}</th>
+                    <td>{patient.id}</td>
                     <td>{patient.prenom}</td>
                     <td>{patient.nom}</td>
                     <td>{patient.tel}</td>
@@ -169,6 +170,7 @@ class BootstrapTable extends React.Component {
                 >
                     <tr key={index} >
                     <th scope="row">{index+1}</th>
+                    <td>{patient.id}</td>
                     <td>{patient.prenom}</td>
                     <td>{patient.nom}</td>
                     <td>{patient.tel}</td>
@@ -210,6 +212,7 @@ class BootstrapTable extends React.Component {
                 >
                     <tr key={index} >
                     <th scope="row">{index+1}</th>
+                    <td>{patient.id}</td>
                     <td>{patient.prenom}</td>
                     <td>{patient.nom}</td>
                     <td>{patient.tel}</td>
@@ -251,6 +254,7 @@ class BootstrapTable extends React.Component {
                 >
                     <tr key={index} >
                     <th scope="row">{index+1}</th>
+                    <td>{patient.id}</td>
                     <td>{patient.prenom}</td>
                     <td>{patient.nom}</td>
                     <td>{patient.tel}</td>
@@ -334,6 +338,7 @@ class BootstrapTable extends React.Component {
                                                     <thead>
                                                         <tr>
                                                             <th>#</th>
+                                                            <th>ID</th>
                                                             <th>Prénom</th>
                                                             <th>Nom</th>
                                                             <th>Téléphone</th>
@@ -371,6 +376,7 @@ class BootstrapTable extends React.Component {
                                                     <thead>
                                                         <tr>
                                                             <th>#</th>
+                                                            <th>ID</th>
                                                             <th>Prénom</th>
                                                             <th>Nom</th>
                                                             <th>Téléphone</th>
@@ -408,6 +414,7 @@ class BootstrapTable extends React.Component {
                                                     <thead>
                                                         <tr>
                                                             <th>#</th>
+                                                            <th>ID</th>
                                                             <th>Prénom</th>
                                                             <th>Nom</th>
                                                             <th>Téléphone</th>
@@ -445,6 +452,7 @@ class BootstrapTable extends React.Component {
                                                     <thead>
                                                         <tr>
                                                             <th>#</th>
+                                                            <th>ID</th>
                                                             <th>Prénom</th>
                                                             <th>Nom</th>
                                                             <th>Téléphone</th>
