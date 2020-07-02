@@ -17,6 +17,7 @@ class NavRight extends Component {
     logout (){
         const {cookies} = this.props;
         cookies.remove('jwt');
+        window.location.reload(true);
     }
     render() {
 
