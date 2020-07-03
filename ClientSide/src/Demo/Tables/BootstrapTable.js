@@ -230,7 +230,7 @@ class BootstrapTable extends React.Component {
             const popup =(
                 <Popover id='malade'>
                     <Popover.Content>
-                        <button id='details btn-details' class='btn' onClick={this.getPatientData.bind(this,patient)}> <i class= 'fa fa-bars'/>  </button>
+                        <button class='btn btn-details' onClick={this.getPatientData.bind(this,patient)}> <i class= 'fa fa-bars'/>  </button>
                         <button class='btn btn-modifier' onClick={e=> {
                             const {history} =this.props ;
                             history.push({
