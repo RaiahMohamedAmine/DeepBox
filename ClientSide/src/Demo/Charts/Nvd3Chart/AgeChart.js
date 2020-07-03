@@ -46,7 +46,17 @@ var datum = [
             {
                 label :'71 à 80 ans',
                 value: 0,
-                color :"#e00000"
+                color :"#d900e0"
+            } ,
+            {
+                label :'81 à 90 ans',
+                value: 0,
+                color :"#a83250"
+            } ,
+            {
+                label :'91 à 100 ans',
+                value: 0,
+                color :"#ff0000"
             } 
         ]
     }
