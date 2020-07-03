@@ -9,11 +9,11 @@ var datum = [
         values: [{
             "label": "Hommes",
             "value": 0,
-            "color": "#4C5667"
+            "color": "#04a9f5"
         }, {
             "label": "Femmes",
             "value": 0,
-            "color": "#3ebfea"
+            "color": "#ff0000"
         }]
     }
 ];
@@ -47,7 +47,7 @@ class BarDiscreteChart extends React.Component {
     render() {
         return (
             this.state.loading >= 1 ?
-                <NVD3Chart tooltip={{ enabled: true }} type="discreteBarChart" datum={datum} x="label" y="value" height={300} showValues />
+                <NVD3Chart  type="discreteBarChart" datum={datum} x="label" y="value" height={300} showValues />
                 :
                 <Spinner animation="border" role="status">
                     <span className="sr-only">Loading...</span>

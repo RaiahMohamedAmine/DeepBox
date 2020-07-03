@@ -9,44 +9,44 @@ var datum = [
         key: "Cumulative Return",
         values: [
             {
-                label :'0 à 10' ,
+                label :'0 à 10 ans',
+                value: 0,
+                color :"#e0d100"
+            } ,
+            {
+                label :'11 à 20 ans',
+                value: 0,
+                color :"#6ce000"
+            } ,
+            {
+                label :'21 à 30 ans',
+                value: 0,
+                color :"#00e043"
+            } ,
+            {
+                label :'31 à 40 ans',
                 value: 0,
                 color :"#009de0"
             } ,
             {
-                label :'11 à 20' ,
+                label :'41 à 50 ans',
                 value: 0,
-                color :"#ca03fc"
+                color :"#001ee0"
             } ,
             {
-                label :'21 à 30' ,
+                label :'51 à 60 ans',
                 value: 0,
-                color :"#62e331"
+                color :"#3c00e0"
             } ,
             {
-                label :'31 à 40' ,
+                label :'61 à 70 ans',
                 value: 0,
-                color :"#72c3e1"
+                color :"#7b00e0"
             } ,
             {
-                label :'41 à 50' ,
+                label :'71 à 80 ans',
                 value: 0,
-                color :"#779da1"
-            } ,
-            {
-                label :'51 à 60' ,
-                value: 0,
-                color :"#f29400"
-            } ,
-            {
-                label :'61 à 70' ,
-                value: 0,
-                color :"#feed01"
-            } ,
-            {
-                label :'71 à 80' ,
-                value: 0,
-                color :"#bd1320"
+                color :"#e00000"
             } 
         ]
     }

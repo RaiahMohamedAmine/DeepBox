@@ -27,10 +27,10 @@ class SignUp1 extends React.Component {
                 toast.error(res.data.message,config.TOAST_OPTIONS)
             }
             else{
-                if (this.state.saveCredantials) {
+               // if (this.state.saveCredantials) {
                     const {cookies} = this.props;
                     cookies.set('jwt',res.data.token);
-                }
+             //   }
                 this.props.setLogged();
             }
         })

@@ -5,10 +5,10 @@ import GetMaladeEtat from '../../../middleware/malade/GetMaladeEtat';
 import {withCookies} from 'react-cookie';
 
 var datum = [
-    { key: "Suspects", y: 0, color: "#ff8a65" },
-    { key: "Positifs", y: 0, color: "#f4c22b" },
-    { key: "Négatifs", y: 0, color: "#04a9f5" },
-    { key: "Guéris", y: 0, color: "#3ebfea" }
+    { key: "Suspects", y: 0, color: "#aac418" },
+    { key: "Positifs", y: 0, color: "#e01433" },
+    { key: "Négatifs", y: 0, color: "#27a348" },
+    { key: "Guéris", y: 0, color: "#02a5d6" }
 ];
 
 class PieBasicChart extends React.Component {
