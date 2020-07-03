@@ -6,6 +6,7 @@ import Breadcrumb from "../../../App/layout/AdminLayout/Breadcrumb";
 import axios from 'axios';
 import { withCookies } from 'react-cookie';
 import {toast} from 'react-toastify';
+import config from '../../../middleware/config';
 
 class SignUp1 extends React.Component {
     state ={
@@ -23,8 +24,7 @@ class SignUp1 extends React.Component {
             }
         }).then((res) => {
             if (res.data.type==='Err'){
-               // alert(res.data.message);
-                toast.warn(res.data.message)
+                toast.error(res.data.message,config.TOAST_OPTIONS)
             }
             else{
                 if (this.state.saveCredantials) {

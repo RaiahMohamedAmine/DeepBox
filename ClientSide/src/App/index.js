@@ -11,6 +11,8 @@ import routes from "../route";
 import SignIn from '../Demo/Authentication/SignIn/SignIn1';
 import axios from 'axios';
 import { withCookies } from 'react-cookie';
+import config from '../middleware/config';
+import { toast } from 'react-toastify';
 
 const AdminLayout = Loadable({
     loader: () => import('./layout/AdminLayout'),
@@ -42,7 +44,7 @@ class App extends Component {
                     this.setState({
                         loading:false,
                         logged:true
-                    });
+                    }, ()=> toast.info('Bienvenue Admin !',config.TOAST_OPTIONS));
                 }
             });
         }
@@ -57,7 +59,7 @@ class App extends Component {
         this.setState({
             logged:true
         }, ()=>{
-            console.log (this.state.logged);
+            toast.info('Bienvenue Admin !',config.TOAST_OPTIONS)
         })
     }
     render() {
