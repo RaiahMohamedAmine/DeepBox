@@ -38,6 +38,14 @@ async function GetStatistics (req,res){
             {
                 label :'71 à 80' ,
                 value: 0
+            } ,
+            {
+                label :'81 à 90' ,
+                value: 0
+            } ,
+            {
+                label :'91 à 100' ,
+                value: 0
             } 
         ]
     }
