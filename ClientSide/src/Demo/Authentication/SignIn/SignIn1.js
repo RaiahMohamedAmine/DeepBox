@@ -5,6 +5,7 @@ import Aux from "../../../hoc/_Aux";
 import Breadcrumb from "../../../App/layout/AdminLayout/Breadcrumb";
 import axios from 'axios';
 import { withCookies } from 'react-cookie';
+import {toast} from 'react-toastify';
 
 class SignUp1 extends React.Component {
     state ={
@@ -22,7 +23,8 @@ class SignUp1 extends React.Component {
             }
         }).then((res) => {
             if (res.data.type==='Err'){
-                alert(res.data.message);
+               // alert(res.data.message);
+                toast.warn(res.data.message)
             }
             else{
                 if (this.state.saveCredantials) {
