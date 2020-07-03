@@ -1,6 +1,6 @@
 import axios from 'axios';
 import config from '../config';
-import {toast} from 'react-toastify'
+import {toast} from 'react-toastify';
 
 export default (data, token) => {
     return axios ({

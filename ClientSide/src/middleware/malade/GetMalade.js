@@ -1,5 +1,6 @@
 import axios from 'axios';
 import config from '../config';
+import {toast} from 'react-toastify';
 
 export default (token) => {
     return axios ({
@@ -10,10 +11,10 @@ export default (token) => {
         }
     }).then (res=> {
         if (res.data.type ==='Err')
-            alert("Une Erreur a survenu. Veuillez Réessayez")
+            toast.error("Une Erreur a survenu. Veuillez Réessayez",config.TOAST_OPTIONS);
         else
             return res.data.malades;
     }).catch (err=>{
-        alert('Assurez-vous que le serveur est bien en marche')
+        toast.error('Assurez-vous que le serveur est bien en marche',config.TOAST_OPTIONS);
     });
 }
