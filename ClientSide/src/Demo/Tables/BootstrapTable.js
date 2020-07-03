@@ -5,6 +5,7 @@ import GetMaladeEtat from '../../middleware/malade/GetMaladeEtat';
 import DeleteMalade from '../../middleware/malade/DeleteMalade';
 import { withCookies } from 'react-cookie';
 import Aux from "../../hoc/_Aux";
+import './table.css'
 
 class BootstrapTable extends React.Component {
     state = {
@@ -103,19 +104,19 @@ class BootstrapTable extends React.Component {
             const popup =(
                 <Popover id='malade'>
                     <Popover.Content>
-                        <button onClick={this.getPatientData.bind(this,patient)}> Details </button>
-                        <button onClick={e=> {
+                        <button class='btn btn-details' onClick={this.getPatientData.bind(this,patient)}> <i class= 'fa fa-bars'/>  </button>
+                        <button class='btn btn-modifier' onClick={e=> {
                             const {history} =this.props ;
                             history.push({
                                 pathname :"/malades/modifier",
                                 patient,
                                 modify : true
                             })
-                        }}>  Modifier </button>
-                        <button onClick={e=>{
+                        }}>  <i class= 'fa fa-pencil'/>   </button>
+                        <button class='btn btn-delete' onClick={e=>{
                             const {cookies} = this.props;
                             DeleteMalade(patient,cookies.get('jwt'));
-                        }}>  Supprimer</button>
+                        }}>   <i class= 'fa fa-trash'/>  </button>
                     </Popover.Content>
                 </Popover>
             )
@@ -145,19 +146,19 @@ class BootstrapTable extends React.Component {
             const popup =(
                 <Popover id='malade'>
                     <Popover.Content>
-                        <button onClick={this.getPatientData.bind(this,patient)}> Details </button>
-                        <button onClick={e=> {
+                        <button class='btn btn-details' onClick={this.getPatientData.bind(this,patient)}> <i class= 'fa fa-bars'/>  </button>
+                        <button class='btn btn-modifier' onClick={e=> {
                             const {history} =this.props ;
                             history.push({
                                 pathname :"/malades/modifier",
                                 patient,
                                 modify : true
                             })
-                        }}>  Modifier </button>
-                        <button onClick={e=>{
+                        }}>  <i class= 'fa fa-pencil'/>   </button>
+                        <button class='btn btn-delete' onClick={e=>{
                             const {cookies} = this.props;
-                            DeleteMalade(patient,cookies.get('jwt'))
-                        }}>  Supprimer</button>
+                            DeleteMalade(patient,cookies.get('jwt'));
+                        }}>   <i class= 'fa fa-trash'/>  </button>
                     </Popover.Content>
                 </Popover>
             )
@@ -187,19 +188,19 @@ class BootstrapTable extends React.Component {
             const popup =(
                 <Popover id='malade'>
                     <Popover.Content>
-                        <button onClick={this.getPatientData.bind(this,patient)}> Details </button>
-                        <button onClick={e=> {
+                        <button class='btn btn-details' onClick={this.getPatientData.bind(this,patient)}> <i class= 'fa fa-bars'/>  </button>
+                        <button class='btn btn-modifier' onClick={e=> {
                             const {history} =this.props ;
                             history.push({
                                 pathname :"/malades/modifier",
                                 patient,
                                 modify : true
                             })
-                        }}>  Modifier </button>
-                        <button onClick={e=>{
+                        }}>  <i class= 'fa fa-pencil'/>   </button>
+                        <button class='btn btn-delete' onClick={e=>{
                             const {cookies} = this.props;
-                            DeleteMalade(patient,cookies.get('jwt'))
-                        }}>  Supprimer</button>
+                            DeleteMalade(patient,cookies.get('jwt'));
+                        }}>   <i class= 'fa fa-trash'/>  </button>
                     </Popover.Content>
                 </Popover>
             )
@@ -229,19 +230,19 @@ class BootstrapTable extends React.Component {
             const popup =(
                 <Popover id='malade'>
                     <Popover.Content>
-                        <button onClick={this.getPatientData.bind(this,patient)}> Details </button>
-                        <button onClick={e=> {
+                        <button id='details btn-details' class='btn' onClick={this.getPatientData.bind(this,patient)}> <i class= 'fa fa-bars'/>  </button>
+                        <button class='btn btn-modifier' onClick={e=> {
                             const {history} =this.props ;
                             history.push({
                                 pathname :"/malades/modifier",
                                 patient,
                                 modify : true
                             })
-                        }}>  Modifier </button>
-                        <button onClick={e=>{
+                        }}>  <i class= 'fa fa-pencil'/>   </button>
+                        <button class='btn btn-delete' onClick={e=>{
                             const {cookies} = this.props;
-                            DeleteMalade(patient,cookies.get('jwt'))
-                        }}>  Supprimer</button>
+                            DeleteMalade(patient,cookies.get('jwt'));
+                        }}>   <i class= 'fa fa-trash'/>  </button>
                     </Popover.Content>
                 </Popover>
             )

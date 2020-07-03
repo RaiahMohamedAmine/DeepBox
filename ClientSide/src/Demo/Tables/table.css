@@ -1,0 +1,23 @@
+.btn-modifier:hover::before{
+    content: 'Modifier';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-70%);
+}
+
+.btn-details:hover::before{
+    content: 'Détails';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-245%);
+}
+
+.btn-delete:hover::before{
+    content: 'Supprimer';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(55%);
+}
