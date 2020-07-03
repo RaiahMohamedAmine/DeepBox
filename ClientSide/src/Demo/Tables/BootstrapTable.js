@@ -149,7 +149,7 @@ class BootstrapTable extends React.Component {
                         <button onClick={e=> {
                             const {history} =this.props ;
                             history.push({
-                                pathname :"/forms/form-basic",
+                                pathname :"/malades/modifier",
                                 patient,
                                 modify : true
                             })
@@ -191,7 +191,7 @@ class BootstrapTable extends React.Component {
                         <button onClick={e=> {
                             const {history} =this.props ;
                             history.push({
-                                pathname :"/forms/form-basic",
+                                pathname :"/malades/modifier",
                                 patient,
                                 modify : true
                             })
@@ -233,7 +233,7 @@ class BootstrapTable extends React.Component {
                         <button onClick={e=> {
                             const {history} =this.props ;
                             history.push({
-                                pathname :"/forms/form-basic",
+                                pathname :"/malades/modifier",
                                 patient,
                                 modify : true
                             })
