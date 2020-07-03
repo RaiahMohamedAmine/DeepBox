@@ -44,7 +44,8 @@ class App extends Component {
                     this.setState({
                         loading:false,
                         logged:true
-                    }, ()=> toast.info('Bienvenue Admin !',config.TOAST_OPTIONS));
+                    }, //()=> toast.info('Bienvenue Admin !',config.TOAST_OPTIONS)
+                    );
                 }
             });
         }

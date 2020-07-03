@@ -16,6 +16,7 @@ export default (data, token) => {
         }
         else{
             toast.success("Le malade "+data.prenom + ' ' + data.nom + " a été modifié avec Succés",config.TOAST_OPTIONS);
+            setTimeout(()=>window.location.reload(true),5000)
         }
     }).catch (err=>{
         toast.error('Assurez-vous que le serveur est bien en marche',config.TOAST_OPTIONS);

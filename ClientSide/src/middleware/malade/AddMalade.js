@@ -19,7 +19,8 @@ export default (data, token) => {
         if (res.data.type==='ID-Err')
             toast.error(res.data.message,config.TOAST_OPTIONS);
         else
-            toast.success("Le malade "+data.prenom + ' ' + data.nom + " a été ajouté avec Succés",config.TOAST_OPTIONS)
+            toast.success("Le malade "+data.prenom + ' ' + data.nom + " a été ajouté avec Succés",config.TOAST_OPTIONS);
+            setTimeout(()=>window.location.reload(true),5000);
     }
         
     }).catch (err=>{
